@@ -116,6 +116,29 @@
       border-radius: 10px;
     }
 
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: #1e293b;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(62, 193, 211, 0.3);
+    }
+
+    .skill-card h3 {
+      margin-top: 0;
+      color: #3EC1D3;
+    }
+
   </style>
 </head>
 <body>
@@ -143,6 +166,44 @@
       At the end of the day, I like building games that leave an impact on their player.
     </p>
   </section>
+
+  <section id="skills" class="fade">
+  <h2>Skills</h2>
+
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <h3>Languages</h3>
+      <p>C++, C#, SQL</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Game Development</h3>
+      <p>Unreal Engine, Unity, Blueprints, Multiplayer Systems</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Graphics / Tools</h3>
+      <p>Vulkan, Dear ImGui</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Core Concepts</h3>
+      <p>Data Structures, Systems Programming, Data-Driven Architecture</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Workflow</h3>
+      <p>GitHub, Perforce, Jira, Conflunece, Trello, Notion, Figma</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Strengths</h3>
+      <p>Team Leadership, Cross-Discipline Communication, Project Ownership</p>
+    </div>
+
+  </div>
+</section>
 
   <section id="projects" class="fade">
     <h2>Projects</h2>
