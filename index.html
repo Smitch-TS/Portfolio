@@ -139,6 +139,34 @@
       color: #3EC1D3;
     }
 
+    .about-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      max-width: 900px;
+    }
+
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #3EC1D3;
+      box-shadow: 0 0 15px rgba(62, 193, 211, 0.4);
+    }
+
+    @media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -156,8 +184,10 @@
   </header>
 
   <section id="about" class="fade">
+    <div class="about-content">
     <img src="Images/HeadShot.jpg" alt="Profile Picture" class="profile-pic">
-    
+
+    <div>
     <h2>About Me</h2>
       I’m a game developer who loves building systems that make games feel great to play. Thus far I have worked primarily in C++, C#, Unreal Engine, and Unity focusing. 
       <br><br>
@@ -167,6 +197,9 @@
       <br><br>
       At the end of the day, I like building games that leave an impact on their player.
     </p>
+    </div>
+
+  </div>
   </section>
 
   <section id="skills" class="fade">
