@@ -1,34 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Operation Starfall</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* === COPY YOUR EXISTING STYLES === */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: #38bdf8;
+      color: #0f172a;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+    }
+
+    .toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      background: #38bdf8;
+      color: black;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    iframe {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    /* === NEW: Project Page Specific === */
+
+    .hero {
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tech-tags {
+      margin-top: 1rem;
+    }
+
+    .tech-tags span {
+      display: inline-block;
+      background: #334155;
+      padding: 0.4rem 0.8rem;
+      margin: 0.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 300px;
+    }
+
+  </style>
 </head>
 <body>
 
+  <div class="toggle" onclick="toggleTheme()">Toggle Theme</div>
+
   <header>
-    <a href="index.html">← Back to Portfolio</a>
-    <h1>Operation Starfall</h1>
+    <h1>Michael Gray</h1>
+    <p>Game Developer | Unreal Engine | C++ | Unity | C#</p>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
   </header>
 
-  <section>
-    <p>Multiplayer Unreal Engine capstone project.</p>
+    <section class="hero">
+    <img src="Images/operation-starfall.png" alt="Potion Panic Screenshot" class="hero-image">
+    <p>First Person Shooter built in one month.</p>
 
-    <h2>Overview</h2>
-    <p>Describe the game, your role, and what you built.</p>
-
-    <h2>Tech Used</h2>
-    <ul>
-      <li>Unreal Engine 5</li>
-      <li>C++</li>
-      <li>Multiplayer Networking</li>
-    </ul>
-
-    <h2>Media</h2>
-    <iframe src="https://itch.io/embed/4345652" width="552" height="167"></iframe>
-
+    <div class="tech-tags">
+      <span>Unity</span>
+      <span>C#</span>
+      <span>UI Systems</span>
+    </div>
   </section>
+
+  <section>
+    <div class="card">
+      <h2>Overview</h2>
+      <p>
+        Operation Starfall is a first-person shooter set in an orbital space station where players must defend against an invading force bent on sabotaging the station’s systems. Using a complex movement system, futuristic weaponry, and multi-objective gameplay, players must fight off waves of enemies, uncover hidden objects, and fight their way to the control room to stop the invaders. 
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Gameplay</h2>
+      <h3>Gameplay Trailer</h3>
+      <iframe width="1065" height="608" src="https://www.youtube.com/embed/lHc1jYLWGq0" title="Potion Panic V002 Update" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <div class="card">
+      <h2>What I Worked On</h2>
+      <h3>Gameplay Systems</h3>
+      <ul>
+        <li>Built components surrounding core gameplay loop including potion brewing, request handling, scoring, and round timers</li>
+        <li>Designed potion recipe system using structs and data tables for scalable ingredient management</li>
+        <li>Implemented request lifecycle (generation, timers, validation, and completion logic)</li>
+        <li>Added progression systems including level data, difficulty scaling, and ingredient variations</li>
+        <li>Developed GameMode, GameState, and PlayerState systems to control game flow</li>
+        <li>Introduced currency rewards, high score tracking, and end-of-round ranking</li>
+      </ul>
+
+      <h3>UI / UX</h3>
+      <ul>
+        <li>Designed and implemented main menu, HUD, pause menu, and end-of-round screens</li>
+        <li>Built dynamic UI for request tracking, timers, score display, and ingredient feedback</li>
+        <li>Added settings menus (graphics, audio) with persistent user preferences</li>
+        <li>Created save/load UI with multiple slots, deletion, and confirmation flows</li>
+        <li>Improved UI performance and stability by reducing redundant updates</li>
+        <li>Enhanced UX with visual feedback, icons, and layout refinements</li>
+      </ul>
+
+      <h3>Multiplayer & Networking</h3>
+      <ul>
+        <li>Implemented multiplayer support with synchronized GameState and PlayerState</li>
+        <li>Optimized server-client communication for UI and gameplay updates</li>
+        <li>Resolved replication issues to ensure consistent client state</li>
+        <li>Built lobby/ready system with player count display and controlled round start</li>
+        <li>Fixed multiplayer bugs including duplicate requests and level loading issues</li>
+      </ul>
+
+      <h3>Architecture & Systems Design</h3>
+      <ul>
+        <li>Established scalable project structure and core C++ systems in Unreal Engine</li>
+        <li>Developed reusable systems for UI, gameplay logic, and data handling</li>
+        <li>Transitioned hardcoded logic to data-driven systems using data tables</li>
+        <li>Improved maintainability by consolidating systems and reducing duplication</li>
+        <li>Implemented enums and structured state handling for cleaner flow control</li>
+      </ul>
+
+      <h3>Persistence & Progression</h3>
+      <ul>
+        <li>Built save game system with multiple slots and persistent data</li>
+        <li>Implemented level select and progression tied to save data</li>
+        <li>Ensured proper loading of user settings and game state across sessions</li>
+      </ul>
+
+      <h3>Tools, Debugging & Optimization</h3>
+      <ul>
+        <li>Created debugging tools and cheat systems for testing</li>
+        <li>Resolved crashes, memory issues, and edge cases</li>
+        <li>Tuned gameplay values for balance and playtesting</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Links</h2>
+      <a class="button" href="https://null-forge-studio.itch.io/potionpanic" target="_blank">Play on Itch</a>
+      <!-- Add GitHub if you have it -->
+      <!-- <a class="button" href="#">View Code</a> -->
+    </div>
+  </section>
+
+  <footer style="text-align:center; padding:2rem; background:#1e293b;">
+    <p>© 2026 Michael Gray</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+  </script>
 
 </body>
 </html>
