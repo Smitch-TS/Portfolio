@@ -115,54 +115,67 @@
     }
 
     .carousel {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.carousel-track {
-  display: flex;
-}
-
-.slide {
-  min-width: 100%;
-  display: none;
-}
-
-.slide.active {
-  display: block;
-}
-
-.carousel img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-}
-
-/* Buttons */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-size: 20px;
-  border-radius: 50%;
-}
-
-.carousel-btn.prev {
-  left: 10px;
-}
-
-.carousel-btn.next {
-  right: 10px;
-}
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    
+    .slide {
+      min-width: 100%;
+    }
+    
+    .carousel img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+    
+    /* Buttons */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+    
+    /* Dots */
+    .carousel-dots {
+      text-align: center;
+      margin-top: 10px;
+    }
+    
+    .carousel-dots span {
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+      margin: 5px;
+      background: #64748b;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .carousel-dots .active {
+      background: #38bdf8;
+    }
 
   </style>
 </head>
@@ -213,6 +226,8 @@
         <button class="carousel-btn prev">&#10094;</button>
         <button class="carousel-btn next">&#10095;</button>
       </div>
+
+      <div class="carousel-dots"></div>
     </div>
 
     <div class="card">
@@ -287,6 +302,92 @@
       document.body.classList.toggle('light');
     }
   </script>
+
+  <script>
+      function toggleTheme() {
+        document.body.classList.toggle('light');
+      }
+    
+      const track = document.querySelector('.carousel-track');
+      const slides = document.querySelectorAll('.slide');
+      const nextBtn = document.querySelector('.next');
+      const prevBtn = document.querySelector('.prev');
+      const dotsContainer = document.querySelector('.carousel-dots');
+    
+      let currentIndex = 0;
+      let autoPlayInterval;
+    
+      // === POSITION SLIDES ===
+      function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+        document.querySelectorAll('.carousel-dots span').forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+      }
+    
+      // === BUTTON CONTROLS ===
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+        resetAutoplay();
+      });
+    
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+        resetAutoplay();
+      });
+    
+      // === DOTS ===
+      slides.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarousel();
+          resetAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+      });
+    
+      // === AUTO PLAY ===
+      function startAutoplay() {
+        autoPlayInterval = setInterval(() => {
+          currentIndex = (currentIndex + 1) % slides.length;
+          updateCarousel();
+        }, 3000);
+      }
+    
+      function resetAutoplay() {
+        clearInterval(autoPlayInterval);
+        startAutoplay();
+      }
+    
+      // === SWIPE SUPPORT ===
+      let startX = 0;
+    
+      track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+      });
+    
+      track.addEventListener('touchend', (e) => {
+        let endX = e.changedTouches[0].clientX;
+        let diff = startX - endX;
+    
+        if (diff > 50) {
+          currentIndex = (currentIndex + 1) % slides.length;
+        } else if (diff < -50) {
+          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        }
+    
+        updateCarousel();
+        resetAutoplay();
+      });
+    
+      // === INIT ===
+      updateCarousel();
+      startAutoplay();
+    </script>
 
 </body>
 </html>
