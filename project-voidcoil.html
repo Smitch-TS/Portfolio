@@ -114,6 +114,56 @@
       max-width: 300px;
     }
 
+    .carousel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel-track {
+  display: flex;
+}
+
+.slide {
+  min-width: 100%;
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
   </style>
 </head>
 <body>
@@ -149,9 +199,18 @@
     </div>
 
     <div class="card">
-      <h2>Gameplay</h2>
-      <h3>Gameplay Trailer</h3>
-      <iframe width="1065" height="608" src="https://www.youtube.com/embed/nPV97bFB0KY" title="Operation Starfall Promo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <h2>Screenshots</h2>
+      <div class="carousel">
+        <div class="carousel-track">
+          <img src="voidcoil-mainmenu.png" class="slide active">
+          <img src="voidcoil-game.png" class="slide">
+          <img src="voidcoil-controls.png" class="slide">
+          <img src="voidcoil-settings.png" class="slide">
+        </div>
+      
+        <button class="carousel-btn prev">&#10094;</button>
+        <button class="carousel-btn next">&#10095;</button>
+      </div>
     </div>
 
     <div class="card">
