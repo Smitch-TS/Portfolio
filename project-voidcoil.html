@@ -1,34 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Voidcoil</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* === COPY YOUR EXISTING STYLES === */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: #38bdf8;
+      color: #0f172a;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+    }
+
+    .toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      background: #38bdf8;
+      color: black;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    iframe {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    /* === NEW: Project Page Specific === */
+
+    .hero {
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tech-tags {
+      margin-top: 1rem;
+    }
+
+    .tech-tags span {
+      display: inline-block;
+      background: #334155;
+      padding: 0.4rem 0.8rem;
+      margin: 0.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 300px;
+    }
+
+  </style>
 </head>
 <body>
 
+  <div class="toggle" onclick="toggleTheme()">Toggle Theme</div>
+
   <header>
-    <a href="index.html">← Back to Portfolio</a>
-    <h1>Voidcoil</h1>
+    <h1>Michael Gray</h1>
+    <p>Game Developer | Unreal Engine | C++ | Unity | C#</p>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
   </header>
 
-  <section>
-    <p>Multiplayer Unreal Engine capstone project.</p>
+    <section class="hero">
+    <img src="Images/voidcoil.jpg" alt="Potion Panic Screenshot" class="hero-image">
+      <h2> Voidcoil</h2>
+    <p>Voidcoil recreates the classic arcade game Centipede with a space twist. The goal was to build a game from scratch without using an engine.</p>
 
-    <h2>Overview</h2>
-    <p>Describe the game, your role, and what you built.</p>
-
-    <h2>Tech Used</h2>
-    <ul>
-      <li>Unreal Engine 5</li>
-      <li>C++</li>
-      <li>Multiplayer Networking</li>
-    </ul>
-
-    <h2>Media</h2>
-    <iframe src="https://itch.io/embed/4345652" width="552" height="167"></iframe>
-
+    <div class="tech-tags">
+      <span>Unity</span>
+      <span>C#</span>
+      <span>UI Systems</span>
+    </div>
   </section>
+
+  <section>
+    <div class="card">
+      <h2>Overview</h2>
+      <p>
+        A fast-paced, arcade-style shooter inspired by Centipede Chaos, this space-themed game challenges players to destroy a segmented enemy known as the Voidcoil as it snakes down the screen while navigating around obstacles. Players earn points by eliminating enemies—including astronauts and asteroids—and destroying environmental hazards like planets and satellites. Across three progressively challenging levels, the ultimate goal is to fully eliminate the Voidcoil while maximizing score and survival.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Gameplay</h2>
+      <h3>Gameplay Trailer</h3>
+      <iframe width="1065" height="608" src="https://www.youtube.com/embed/nPV97bFB0KY" title="Operation Starfall Promo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <div class="card">
+      <h2>What I Worked On</h2>
+
+     <h3>Gameplay & Core Systems</h3>
+      <ul>
+        <li>Helped define core game direction inspired by classic and modern Centipede-style gameplay</li>
+        <li>Supported system expansion beyond core mechanics, including level transitions and additional features</li>
+        <li>Contributed to overall game polish, tuning, and feature completion</li>
+      </ul>
+    
+      <h3>UI / UX</h3>
+      <ul>
+        <li>Designed and implemented full menu suite (main menu, pause, settings, game over)</li>
+        <li>Developed functional UI interactions (start game, navigation, settings, exit)</li>
+        <li>Built player HUD displaying score, high score, and lives with configurable layout</li>
+        <li>Implemented high score entry system with player initials</li>
+      </ul>
+    
+      <h3>Audio Systems</h3>
+      <ul>
+        <li>Implemented background music and gameplay sound effects</li>
+        <li>Rebuilt audio system to ensure proper playback in release builds</li>
+        <li>Designed centralized audio management via game manager with sound libraries</li>
+      </ul>
+    
+      <h3>Input & Player Experience</h3>
+      <ul>
+        <li>Added full controller support including vibration feedback</li>
+        <li>Implemented in-game control scheme menu for improved usability</li>
+      </ul>
+    
+      <h3>Architecture & Systems Design</h3>
+      <ul>
+        <li>Modularized codebase into separate C++ files to reduce merge conflicts and improve scalability</li>
+        <li>Integrated UI framework (e.g., ImGui) into the engine for rapid UI development</li>
+        <li>Refactored audio system to use component-based architecture tied to game manager</li>
+      </ul>
+    
+      <h3>Tools, Workflow & Collaboration</h3>
+      <ul>
+        <li>Set up project foundation including GitHub repository and Jira workflow</li>
+        <li>Collaborated on establishing development pipelines and ensuring build stability</li>
+        <li>Tested and validated systems across team contributions</li>
+      </ul>
+    
+      <h3>Bug Fixing & Optimization</h3>
+      <ul>
+        <li>Identified and resolved critical memory leak related to level loading/unloading</li>
+        <li>Debugged and fixed release build audio playback issues</li>
+        <li>Addressed edge cases and stability issues during polish phase</li>
+        <li>Improved memory handling by correcting improper object lifecycle management</li>
+      </ul>
+      
+    </div>
+
+    <div class="card">
+      <h2>Links</h2>
+      <a class="button" href="https://smitch-of-the-nook.itch.io/voidcoil" target="_blank">Play on Itch</a>
+    </div>
+  </section>
+
+  <footer style="text-align:center; padding:2rem; background:#1e293b;">
+    <p>© 2026 Michael Gray</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+  </script>
 
 </body>
 </html>
