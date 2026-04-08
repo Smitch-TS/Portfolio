@@ -50,6 +50,11 @@
       background: #1e293b;
       padding: 1rem;
       border-radius: 10px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
       transform: translateY(20px);
       opacity: 0;
       transition: all 0.6s ease;
@@ -116,6 +121,79 @@
       border-radius: 10px;
     }
 
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: #1e293b;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(62, 193, 211, 0.3);
+    }
+
+    .skill-card h3 {
+      margin-top: 0;
+      color: #3EC1D3;
+    }
+
+    .about-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      max-width: 900px;
+    }
+
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #3EC1D3;
+      box-shadow: 0 0 15px rgba(62, 193, 211, 0.4);
+    }
+
+    .project-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background-color: #4CAF50; /* change to match your theme */
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      align-self: flex-start;
+    }
+
+    .project-btn:hover {
+      background-color: #45a049;
+      transform: translateY(-2px);
+    }
+
+    .project-btn:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -133,16 +211,55 @@
   </header>
 
   <section id="about" class="fade">
+    <div class="about-content">
+    <img src="Images/HeadShot.jpg" alt="Profile Picture" class="profile-pic">
+
+    <div>
     <h2>About Me</h2>
-      I’m a game developer who loves building systems that make games feel great to play. Thus far I have worked primarily in C++, C#, Unreal Engine, and Unity focusing. 
-      <br><br>
-      I’ve led small teams and built core systems like game state management, networking, and player-facing UI. I enjoy figuring out how everything connects under the hood just as much as making sure it feels smooth and intuitive on the surface.
-      <br><br>
-      Before game development, I worked in Medical Device Research, Technical Project Management in Healthcare, as well as Recruiting for start up game studios. All of that to say I’m comfortable owning systems, communicating across disciplines, and actually getting things done—not just prototyping ideas.
-      <br><br>
-      At the end of the day, I like building games that leave an impact on their player.
+      I’m a game developer focused on building systems that make games feel great. I work in C++, C#, Unreal, and Unity, and have led small teams while developing core systems like game state, networking, and UI. With a background in healthcare tech and recruiting for game startups, I’m strong in cross-team collaboration and execution—not just ideas. I aim to work on games and software that make an impact.
     </p>
+    </div>
+
+  </div>
   </section>
+
+  <section id="skills" class="fade">
+  <h2>Skills</h2>
+
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <h3>Languages</h3>
+      <p>C++, C#, SQL</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Game Development</h3>
+      <p>Unreal Engine, Unity, Blueprints, Multiplayer Systems</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Graphics / Tools</h3>
+      <p>Vulkan, Dear ImGui</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Core Concepts</h3>
+      <p>Data Structures, Systems Programming, Data-Driven Architecture</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Workflow</h3>
+      <p>GitHub, Perforce, Jira, Conflunece, Trello, Notion, Figma</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Strengths</h3>
+      <p>Team Leadership, Cross-Discipline Communication, Project Ownership</p>
+    </div>
+
+  </div>
+</section>
 
   <section id="projects" class="fade">
     <h2>Projects</h2>
@@ -152,19 +269,22 @@
       <div class="card">
         <iframe frameborder="0" src="https://itch.io/embed/4345652" width="100%" height="200"><a href="https://null-forge-studio.itch.io/potionpanic">Potion Panic by Null Forge Studio, ShizNizz, AstonMartinez, Smitch_of_the_Nook, TheAngelofChaos</a></iframe>
         <h3>Potion Panic</h3>
-        <p>Multiplayer Unreal Engine capstone project.</p>
+        <p>Arcade style multiplayer game inspired by games like Overcooked. This is my Capstone Project for my Game Development program.</p>
+        <a href="project-potion-panic.html" class="project-btn">View Project</a>
       </div>
 
       <div class="card">
         <iframe height="200" frameborder="0" src="https://itch.io/embed/3910417" width="100%"><a href="https://smitch-of-the-nook.itch.io/voidcoil">Voidcoil by Smitch_of_the_Nook</a></iframe>
         <h3>Voidcoil</h3>
-        <p>Arcade-style C++ + Vulkan game.</p>
+        <p>Centipede-like arcade game built using C++, GateWare, Vulkan, and Dear ImGui. Goal of the project was to build a game without an engine.</p>
+        <a href="project-voidcoil.html" class="project-btn">View Project</a>
       </div>
 
       <div class="card">
         <iframe height="200" frameborder="0" src="https://itch.io/embed/4456322" width="100%"><a href="https://smitch-of-the-nook.itch.io/operation-starfull">Operation Starfull by Smitch_of_the_Nook</a></iframe>
         <h3>Operation Starfall</h3>
-        <p>Fast-paced Unity shooter with modular systems.</p>
+        <p>Fast-paced Unity shooter with modular systems. The goal of this project was to build a game in one month in a team setting.</p>
+        <a href="project-operation-starfall.html" class="project-btn">View Project</a>
       </div>
 
     </div>
@@ -174,7 +294,7 @@
     <h2>Contact</h2>
     <p>Email: michael.gray.dev@gmail.com</p>
     <p>GitHub: <a href="https://github.com/Smitch-TS">github.com/Smitch-TS</a></p>
-    <a class="button" href="Files/Michael Gray - 2026.pdf" target="_blank">View Resume</a>
+    <a class="button" href="Files/resume.pdf" target="_blank">View Resume</a>
   </section>
 
   <footer>
