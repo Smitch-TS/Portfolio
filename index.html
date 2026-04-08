@@ -160,6 +160,27 @@
       box-shadow: 0 0 15px rgba(62, 193, 211, 0.4);
     }
 
+    .project-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background-color: #4CAF50; /* change to match your theme */
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .project-btn:hover {
+      background-color: #45a049;
+      transform: translateY(-2px);
+    }
+
+    .project-btn:active {
+      transform: translateY(0);
+    }
+
     @media (max-width: 768px) {
     .about-content {
         flex-direction: column;
@@ -249,18 +270,21 @@
         <iframe frameborder="0" src="https://itch.io/embed/4345652" width="100%" height="200"><a href="https://null-forge-studio.itch.io/potionpanic">Potion Panic by Null Forge Studio, ShizNizz, AstonMartinez, Smitch_of_the_Nook, TheAngelofChaos</a></iframe>
         <h3>Potion Panic</h3>
         <p>Multiplayer Unreal Engine capstone project.</p>
+        <a href="project-potion-panic.html" class="project-btn">View Project</a>
       </div>
 
       <div class="card">
         <iframe height="200" frameborder="0" src="https://itch.io/embed/3910417" width="100%"><a href="https://smitch-of-the-nook.itch.io/voidcoil">Voidcoil by Smitch_of_the_Nook</a></iframe>
         <h3>Voidcoil</h3>
         <p>Centipede-like arcade game built using C++, GateWare, Vulkan, and Dear ImGui. Goal of the project was to build a game without an engine.</p>
+        <a href="project-voidcoil.html" class="project-btn">View Project</a>
       </div>
 
       <div class="card">
         <iframe height="200" frameborder="0" src="https://itch.io/embed/4456322" width="100%"><a href="https://smitch-of-the-nook.itch.io/operation-starfull">Operation Starfull by Smitch_of_the_Nook</a></iframe>
         <h3>Operation Starfall</h3>
         <p>Fast-paced Unity shooter with modular systems. The goal of this project was to build a game in one month in a team setting.</p>
+        <a href="project-operation-starfall.html" class="project-btn">View Project</a>
       </div>
 
     </div>
