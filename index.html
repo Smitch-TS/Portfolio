@@ -6,38 +6,140 @@
   <title>My Portfolio</title>
 
   <style>
+    :root {
+      --bg: #050608;
+      --bg2: #080b10;
+      --surface: rgba(17, 24, 39, 0.72);
+      --surface-strong: rgba(17, 24, 39, 0.92);
+      --border: rgba(148, 163, 184, 0.18);
+      --text: #e5e7eb;
+      --muted: rgba(226, 232, 240, 0.75);
+      --accent: #39ff14;   /* acid/neon green */
+      --accent2: #ffcc00;  /* hazard/safety yellow */
+      --good: #22c55e;
+      --shadow: 0 22px 60px rgba(2, 6, 23, 0.55);
+      --shadow-soft: 0 12px 30px rgba(2, 6, 23, 0.35);
+      --radius: 14px;
+      --radius2: 22px;
+      color-scheme: dark;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background:
+        radial-gradient(900px 700px at 12% 8%, rgba(250, 204, 21, 0.16), transparent 55%),
+        radial-gradient(900px 700px at 88% 18%, rgba(34, 197, 94, 0.18), transparent 60%),
+        radial-gradient(1100px 900px at 50% 110%, rgba(34, 197, 94, 0.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
       overflow-x: hidden;
+      line-height: 1.6;
+      letter-spacing: 0.1px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      padding: 0.6rem 0.9rem;
+      background: var(--surface-strong);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      transform: translateY(-140%);
+      transition: transform 0.2s ease;
+      z-index: 999;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+      outline: 2px solid rgba(34, 197, 94, 0.55);
+      outline-offset: 2px;
     }
 
     header {
       padding: 2rem;
       text-align: center;
-      background: #1e293b;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(5, 6, 8, 0.74));
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 10;
     }
 
+    header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 8px;
+      background:
+        repeating-linear-gradient(
+          135deg,
+          var(--accent2) 0 14px,
+          rgba(0, 0, 0, 0.0) 14px 24px
+        );
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
     header h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: clamp(2.1rem, 3.5vw, 3rem);
+      letter-spacing: 0.4px;
     }
 
     nav a {
-      margin: 0 1rem;
-      color: #38bdf8;
+      display: inline-block;
+      margin: 0.25rem 0.7rem;
+      color: var(--muted);
       text-decoration: none;
+      padding: 0.35rem 0.55rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      background: rgba(148, 163, 184, 0.08);
+      border-color: rgba(148, 163, 184, 0.18);
+      transform: translateY(-1px);
+    }
+
+    nav a:focus-visible {
+      outline: 2px solid rgba(34, 197, 94, 0.55);
+      outline-offset: 2px;
     }
 
     section {
       padding: 1.5rem 2rem;
       max-width: 900px;
       margin: auto;
+    }
+
+    section h2 {
+      font-size: 1.55rem;
+      margin: 0 0 0.75rem 0;
+      letter-spacing: 0.2px;
+    }
+
+    .subhead {
+      margin: 0.75rem auto 0;
+      max-width: 58ch;
+      color: var(--muted);
     }
 
     .projects {
@@ -47,9 +149,11 @@
     }
 
     .card {
-      background: #1e293b;
-      padding: 1rem;
-      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.68), rgba(17, 24, 39, 0.62));
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      box-shadow: var(--shadow-soft);
+      padding: 1.1rem 1.1rem 1rem;
+      border-radius: var(--radius);
 
       display: flex;
       flex-direction: column;
@@ -65,10 +169,44 @@
       opacity: 1;
     }
 
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(34, 197, 94, 0.38);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0.8rem 0 0.35rem;
+    }
+
+    .card p {
+      margin: 0 0 0.6rem;
+      color: var(--muted);
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
-      background: #1e293b;
+      background: rgba(0, 0, 0, 0.78);
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -1px;
+      height: 8px;
+      background:
+        repeating-linear-gradient(
+          135deg,
+          var(--accent2) 0 14px,
+          rgba(0, 0, 0, 0.0) 14px 24px
+        );
+      opacity: 0.7;
+      pointer-events: none;
     }
 
     /* Fade-in animation */
@@ -88,23 +226,39 @@
     .project-btn {
       display: inline-block;
       margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: #38bdf8;
-      color: #0f172a;
-      border-radius: 5px;
+      padding: 0.55rem 1rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: rgba(2, 6, 23, 0.95);
+      border-radius: 999px;
       text-decoration: none;
-      transition: transform 0.2s ease;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 10px 20px rgba(2, 6, 23, 0.25);
+      transition: transform 0.2s ease, filter 0.2s ease;
+      font-weight: 700;
     }
 
     .button:hover,
     .project-btn:hover {
       transform: scale(1.05);
+      filter: brightness(1.06);
+    }
+
+    .button:focus-visible,
+    .project-btn:focus-visible {
+      outline: 2px solid rgba(34, 197, 94, 0.55);
+      outline-offset: 2px;
     }
 
     /* Dark / Light toggle */
     .light {
-      background: #ffffff;
-      color: #0f172a;
+      --bg: #f8fafc;
+      --bg2: #ffffff;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-strong: rgba(255, 255, 255, 0.9);
+      --border: rgba(15, 23, 42, 0.12);
+      --text: #0f172a;
+      --muted: rgba(15, 23, 42, 0.72);
+      color-scheme: light;
     }
 
     .toggle {
@@ -112,15 +266,29 @@
       top: 20px;
       right: 20px;
       cursor: pointer;
-      background: #38bdf8;
-      color: black;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      background: var(--surface-strong);
+      color: var(--text);
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      user-select: none;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .toggle:hover {
+      transform: translateY(-1px);
+      border-color: rgba(34, 197, 94, 0.38);
+    }
+
+    .toggle:focus-visible {
+      outline: 2px solid rgba(34, 197, 94, 0.55);
+      outline-offset: 2px;
     }
 
     video, img {
       width: 100%;
-      border-radius: 10px;
+      border-radius: var(--radius);
     }
 
     .skills-grid {
@@ -130,9 +298,10 @@
     }
 
     .skill-card {
-      background: #1e293b;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.62), rgba(17, 24, 39, 0.55));
       padding: 1rem;
-      border-radius: 10px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(148, 163, 184, 0.16);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
@@ -143,7 +312,7 @@
 
     .skill-card h3 {
       margin-top: 0;
-      color: #3EC1D3;
+      color: var(--accent);
     }
 
     .about-container {
@@ -156,6 +325,31 @@
       align-items: center;
       gap: 2rem;
       max-width: 900px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-content::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        radial-gradient(320px 240px at 10% 10%, rgba(250, 204, 21, 0.16), transparent 60%),
+        radial-gradient(320px 240px at 90% 20%, rgba(34, 197, 94, 0.16), transparent 60%),
+        radial-gradient(320px 240px at 60% 90%, rgba(34, 197, 94, 0.10), transparent 62%);
+      pointer-events: none;
+      filter: blur(10px);
+      opacity: 0.85;
+    }
+
+    .about-content > * {
+      position: relative;
+      z-index: 1;
     }
 
     .profile-pic {
@@ -163,8 +357,8 @@
       height: 180px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #3EC1D3;
-      box-shadow: 0 0 15px rgba(62, 193, 211, 0.4);
+      border: 3px solid rgba(34, 197, 94, 0.72);
+      box-shadow: 0 0 22px rgba(34, 197, 94, 0.18), 0 0 28px rgba(250, 204, 21, 0.12);
     }
 
     @media (max-width: 768px) {
@@ -174,16 +368,253 @@
       }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .fade,
+      .card {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+
+      .button,
+      .project-btn,
+      nav a,
+      .toggle {
+        transition: none !important;
+      }
+    }
+
+    /* =========================================================
+       Nature × Technology Overhaul (overrides above styles)
+       ========================================================= */
+    :root {
+      /* Night forest palette */
+      --bg: #06110d;
+      --bg2: #050a08;
+      --surface: rgba(7, 16, 13, 0.68);
+      --surface-strong: rgba(7, 16, 13, 0.88);
+      --border: rgba(167, 243, 208, 0.14);
+      --text: rgba(236, 253, 245, 0.92);
+      --muted: rgba(167, 243, 208, 0.72);
+      --leaf: #2dd4bf;
+      --moss: #84cc16;
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+      --shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.32);
+      --radius: 16px;
+      --radius2: 26px;
+      color-scheme: dark;
+    }
+
+    html {
+      scroll-padding-top: 140px;
+      scroll-behavior: smooth;
+    }
+
+    section[id] {
+      scroll-margin-top: 140px;
+    }
+
+    body {
+      background:
+        radial-gradient(900px 600px at 15% 0%, rgba(45, 212, 191, 0.16), transparent 55%),
+        radial-gradient(900px 650px at 92% 18%, rgba(132, 204, 22, 0.12), transparent 60%),
+        radial-gradient(900px 600px at 55% 110%, rgba(16, 185, 129, 0.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(90deg, rgba(45, 212, 191, 0.06) 0 1px, transparent 1px 64px),
+        repeating-linear-gradient(0deg, rgba(132, 204, 22, 0.04) 0 1px, transparent 1px 72px);
+      mask-image: radial-gradient(circle at 25% 20%, rgba(0,0,0,0.9), transparent 60%);
+      opacity: 0.9;
+    }
+
+    .skip-link:focus,
+    nav a:focus-visible,
+    .button:focus-visible,
+    .project-btn:focus-visible,
+    .toggle:focus-visible {
+      outline: 2px solid rgba(45, 212, 191, 0.55);
+      outline-offset: 2px;
+    }
+
+    header {
+      background: linear-gradient(180deg, rgba(6, 17, 13, 0.92), rgba(6, 17, 13, 0.72));
+      border-bottom: 1px solid rgba(167, 243, 208, 0.12);
+    }
+
+    header::after {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.55), rgba(132, 204, 22, 0.55), transparent);
+      opacity: 0.9;
+    }
+
+    section {
+      max-width: 1200px;
+    }
+
+    .about-content {
+      max-width: 1200px;
+    }
+
+    nav a {
+      border-radius: 999px;
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(6, 17, 13, 0.35);
+      color: rgba(236, 253, 245, 0.86);
+    }
+
+    nav a:hover {
+      border-color: rgba(45, 212, 191, 0.30);
+      background: rgba(45, 212, 191, 0.08);
+    }
+
+    .card,
+    .skill-card,
+    .about-content {
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card {
+      background:
+        radial-gradient(420px 220px at 15% 0%, rgba(45, 212, 191, 0.10), transparent 55%),
+        radial-gradient(420px 220px at 90% 20%, rgba(132, 204, 22, 0.08), transparent 55%),
+        linear-gradient(180deg, rgba(7, 16, 13, 0.82), rgba(7, 16, 13, 0.62));
+      transition: transform 0.55s ease, opacity 0.55s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(45, 212, 191, 0.28);
+      box-shadow: 0 0 0 6px rgba(45, 212, 191, 0.08);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      border-color: rgba(45, 212, 191, 0.32);
+      box-shadow: 0 0 0 5px rgba(45, 212, 191, 0.06), var(--shadow);
+    }
+
+    .card p { color: var(--muted); }
+
+    .button,
+    .project-btn {
+      background: linear-gradient(135deg, var(--leaf), var(--moss));
+      color: rgba(5, 10, 8, 0.92);
+      font-weight: 800;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.25rem 0 0.65rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(167, 243, 208, 0.16);
+      background: rgba(6, 17, 13, 0.35);
+      color: rgba(236, 253, 245, 0.88);
+      font-size: 0.85rem;
+      letter-spacing: 0.1px;
+      white-space: nowrap;
+    }
+
+    .tag::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(45, 212, 191, 0.55);
+      box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.10);
+    }
+
+    .tag--moss::before {
+      background: rgba(132, 204, 22, 0.55);
+      box-shadow: 0 0 0 4px rgba(132, 204, 22, 0.10);
+    }
+
+    .toggle:hover {
+      border-color: rgba(45, 212, 191, 0.32);
+      box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.08), var(--shadow-soft);
+    }
+
+    .skill-card:hover {
+      border-color: rgba(132, 204, 22, 0.30);
+      box-shadow: 0 0 0 5px rgba(132, 204, 22, 0.06), var(--shadow-soft);
+    }
+
+    .about-content {
+      border-radius: var(--radius2);
+      background:
+        radial-gradient(520px 280px at 10% 10%, rgba(45, 212, 191, 0.12), transparent 60%),
+        radial-gradient(520px 280px at 90% 15%, rgba(132, 204, 22, 0.10), transparent 60%),
+        linear-gradient(180deg, rgba(7, 16, 13, 0.82), rgba(7, 16, 13, 0.62));
+    }
+
+    .profile-pic {
+      border: 3px solid rgba(45, 212, 191, 0.55);
+      box-shadow: 0 0 0 6px rgba(45, 212, 191, 0.10), 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    footer {
+      background: rgba(6, 17, 13, 0.72);
+      border-top: 1px solid rgba(167, 243, 208, 0.12);
+    }
+
+    footer::before {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.55), rgba(132, 204, 22, 0.55), transparent);
+      opacity: 0.9;
+    }
+
+    .light {
+      --bg: #f3faf6;
+      --bg2: #eef7f2;
+      --surface: rgba(255, 255, 255, 0.74);
+      --surface-strong: rgba(255, 255, 255, 0.9);
+      --border: rgba(6, 17, 13, 0.14);
+      --text: rgba(6, 17, 13, 0.92);
+      --muted: rgba(6, 17, 13, 0.70);
+      color-scheme: light;
+    }
+
   </style>
 </head>
-<body>
+<body id="top">
 
-  <div class="toggle" onclick="toggleTheme()">Toggle Theme</div>
+  <a class="skip-link" href="#about">Skip to content</a>
+  <button class="toggle" id="themeToggle" type="button">Theme: Dark</button>
 
   <header>
     <h1>Michael Gray</h1>
-    <p>Game Developer | Unreal Engine | C++ | Unity | C#</p>
+    <p class="subhead">Game Developer • Unreal Engine • C++ • Unity • C#</p>
     <nav>
+      <a href="#top" aria-label="Home" title="Home">⌂</a>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
@@ -192,12 +623,12 @@
 
   <section id="about" class="fade">
     <div class="about-content">
-    <img src="Images/HeadShot.jpg" alt="Profile Picture" class="profile-pic">
+    <img src="Images/HeadShot.jpg" alt="Photo of Michael Gray" class="profile-pic">
 
     <div>
     <h2>About Me</h2>
-      I’m a game developer focused on building systems that make games feel great. I work in C++, C#, Unreal, and Unity, and have led small teams while developing core systems like game state, networking, and UI. With a background in healthcare tech and recruiting for game startups, I’m strong in cross-team collaboration and execution—not just ideas. My goal is to work on games and software that make an impact.
-    </p>
+      <p>I’m a game developer focused on building systems that make games <strong>feel</strong> great—gameplay loops, UI, networking, and the glue that keeps everything steady under pressure. I work in C++, C#, Unreal, and Unity, and I’ve led small teams while shipping core systems like game state, multiplayer, and menus/HUD.</p>
+      <p>Before games, I worked in healthcare tech and recruiting for game startups, so I’m comfortable translating between disciplines and keeping projects moving. I like clean architecture, fast iteration, and a little bit of chaos—in the fun way.</p>
     </div>
 
   </div>
@@ -250,6 +681,12 @@
         <iframe frameborder="0" src="https://itch.io/embed/4345652" width="100%" height="200"><a href="https://null-forge-studio.itch.io/potionpanic">Potion Panic by Null Forge Studio, ShizNizz, AstonMartinez, Smitch_of_the_Nook, TheAngelofChaos</a></iframe>
         <h3>Potion Panic</h3>
         <p>Arcade style multiplayer game inspired by games like Overcooked. This is my Capstone Project for my Game Development program.</p>
+        <ul class="tag-row" aria-label="Core areas">
+          <li class="tag tag--moss">Unreal Engine 5</li>
+          <li class="tag">C++</li>
+          <li class="tag">Multiplayer</li>
+          <li class="tag tag--moss">UI / UX</li>
+        </ul>
         <a href="project-potion-panic.html" class="project-btn">View Project</a>
       </div>
 
@@ -257,6 +694,12 @@
         <iframe height="200" frameborder="0" src="https://itch.io/embed/3910417" width="100%"><a href="https://smitch-of-the-nook.itch.io/voidcoil">Voidcoil by Smitch_of_the_Nook</a></iframe>
         <h3>Voidcoil</h3>
         <p>Centipede-like arcade game built using C++, GateWare, Vulkan, and Dear ImGui. Goal of the project was to build a game without an engine.</p>
+        <ul class="tag-row" aria-label="Core areas">
+          <li class="tag">C++</li>
+          <li class="tag tag--moss">Vulkan</li>
+          <li class="tag">Dear ImGui</li>
+          <li class="tag tag--moss">Engine-less</li>
+        </ul>
         <a href="project-voidcoil.html" class="project-btn">View Project</a>
       </div>
 
@@ -264,6 +707,12 @@
         <iframe height="200" frameborder="0" src="https://itch.io/embed/4456322" width="100%"><a href="https://smitch-of-the-nook.itch.io/operation-starfull">Operation Starfull by Smitch_of_the_Nook</a></iframe>
         <h3>Operation Starfall</h3>
         <p>Fast-paced Unity shooter with modular systems. The goal of this project was to build a game in one month in a team setting.</p>
+        <ul class="tag-row" aria-label="Core areas">
+          <li class="tag tag--moss">Unity</li>
+          <li class="tag">C#</li>
+          <li class="tag">Modular Systems</li>
+          <li class="tag tag--moss">FPS</li>
+        </ul>
         <a href="project-operation-starfall.html" class="project-btn">View Project</a>
       </div>
 
@@ -282,19 +731,36 @@
   </footer>
 
   <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
       });
-    });
 
-    document.querySelectorAll('.fade, .card').forEach(el => observer.observe(el));
-
-    function toggleTheme() {
-      document.body.classList.toggle('light');
+      document.querySelectorAll('.fade, .card').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.fade, .card').forEach(el => el.classList.add('visible'));
     }
+
+    const themeToggle = document.getElementById('themeToggle');
+
+    function applyTheme(mode) {
+      const isLight = mode === 'light';
+      document.body.classList.toggle('light', isLight);
+      themeToggle.textContent = `Theme: ${isLight ? 'Light' : 'Dark'}`;
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+
+    themeToggle.addEventListener('click', () => {
+      const next = document.body.classList.contains('light') ? 'dark' : 'light';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
   </script>
 
 </body>

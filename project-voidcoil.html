@@ -6,27 +6,88 @@
   <title>Voidcoil</title>
 
   <style>
-    /* === COPY YOUR EXISTING STYLES === */
+    :root {
+      --bg: #050608;
+      --bg2: #080b10;
+      --surface: rgba(17, 24, 39, 0.72);
+      --surface-strong: rgba(17, 24, 39, 0.92);
+      --border: rgba(148, 163, 184, 0.18);
+      --text: #e5e7eb;
+      --muted: rgba(226, 232, 240, 0.75);
+      --accent: #39ff14;   /* acid/neon green */
+      --accent2: #ffcc00;  /* hazard/safety yellow */
+      --shadow: 0 22px 60px rgba(2, 6, 23, 0.55);
+      --shadow-soft: 0 12px 30px rgba(2, 6, 23, 0.35);
+      --radius: 14px;
+      --radius2: 22px;
+      color-scheme: dark;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background:
+        radial-gradient(900px 700px at 12% 8%, rgba(250, 204, 21, 0.16), transparent 55%),
+        radial-gradient(900px 700px at 88% 18%, rgba(34, 197, 94, 0.18), transparent 60%),
+        radial-gradient(1100px 900px at 50% 110%, rgba(34, 197, 94, 0.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      line-height: 1.6;
+      letter-spacing: 0.1px;
     }
+
+    * { box-sizing: border-box; }
 
     header {
       padding: 2rem;
       text-align: center;
-      background: #1e293b;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(5, 6, 8, 0.74));
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 10;
     }
 
+    header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 8px;
+      background:
+        repeating-linear-gradient(
+          135deg,
+          var(--accent2) 0 14px,
+          rgba(0, 0, 0, 0.0) 14px 24px
+        );
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
     nav a {
-      margin: 0 1rem;
-      color: #38bdf8;
+      display: inline-block;
+      margin: 0.25rem 0.7rem;
+      color: var(--muted);
       text-decoration: none;
+      padding: 0.35rem 0.55rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      background: rgba(148, 163, 184, 0.08);
+      border-color: rgba(148, 163, 184, 0.18);
+      transform: translateY(-1px);
+    }
+
+    nav a:focus-visible {
+      outline: 2px solid rgba(34, 197, 94, 0.55);
+      outline-offset: 2px;
     }
 
     section {
@@ -36,9 +97,11 @@
     }
 
     .card {
-      background: #1e293b;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.68), rgba(17, 24, 39, 0.62));
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      box-shadow: var(--shadow-soft);
       padding: 1.5rem;
-      border-radius: 10px;
+      border-radius: var(--radius);
       margin-bottom: 2rem;
     }
 
@@ -46,15 +109,24 @@
       display: inline-block;
       margin-top: 1rem;
       padding: 0.6rem 1.2rem;
-      background: #38bdf8;
-      color: #0f172a;
-      border-radius: 6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: rgba(2, 6, 23, 0.95);
+      border-radius: 999px;
       text-decoration: none;
       font-weight: bold;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 10px 20px rgba(2, 6, 23, 0.25);
+      transition: transform 0.2s ease, filter 0.2s ease;
     }
 
     .button:hover {
       transform: scale(1.05);
+      filter: brightness(1.06);
+    }
+
+    .button:focus-visible {
+      outline: 2px solid rgba(34, 197, 94, 0.55);
+      outline-offset: 2px;
     }
 
     .toggle {
@@ -62,10 +134,24 @@
       top: 20px;
       right: 20px;
       cursor: pointer;
-      background: #38bdf8;
-      color: black;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      background: var(--surface-strong);
+      color: var(--text);
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      user-select: none;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .toggle:hover {
+      transform: translateY(-1px);
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .toggle:focus-visible {
+      outline: 2px solid rgba(56, 189, 248, 0.55);
+      outline-offset: 2px;
     }
 
     iframe {
@@ -91,10 +177,11 @@
 
     .tech-tags span {
       display: inline-block;
-      background: #334155;
+      background: rgba(148, 163, 184, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.16);
       padding: 0.4rem 0.8rem;
       margin: 0.2rem;
-      border-radius: 6px;
+      border-radius: 999px;
       font-size: 0.9rem;
     }
 
@@ -120,7 +207,9 @@
       max-width: 600px;
       margin: auto;
       overflow: hidden;
-      border-radius: 12px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      box-shadow: var(--shadow-soft);
     }
     
     .carousel-track {
@@ -135,7 +224,7 @@
     .carousel img {
       width: 100%;
       height: auto;
-      border-radius: 12px;
+      border-radius: var(--radius);
     }
     
     /* Buttons */
@@ -174,60 +263,277 @@
     }
     
     .carousel-dots .active {
-      background: #38bdf8;
+      background: var(--accent);
     }
 
+    /* Light theme */
+    .light {
+      --bg: #f8fafc;
+      --bg2: #ffffff;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-strong: rgba(255, 255, 255, 0.9);
+      --border: rgba(15, 23, 42, 0.12);
+      --text: #0f172a;
+      --muted: rgba(15, 23, 42, 0.72);
+      color-scheme: light;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .carousel-track {
+        transition: none !important;
+      }
+
+      .button,
+      nav a,
+      .toggle {
+        transition: none !important;
+      }
+    }
+
+    /* =========================================================
+       Nature × Technology Overhaul (overrides above styles)
+       ========================================================= */
+    :root {
+      --bg: #06110d;
+      --bg2: #050a08;
+      --surface: rgba(7, 16, 13, 0.68);
+      --surface-strong: rgba(7, 16, 13, 0.88);
+      --border: rgba(167, 243, 208, 0.14);
+      --text: rgba(236, 253, 245, 0.92);
+      --muted: rgba(167, 243, 208, 0.72);
+      --leaf: #2dd4bf;
+      --moss: #84cc16;
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+      --shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.32);
+      --radius: 16px;
+      --radius2: 26px;
+      color-scheme: dark;
+    }
+
+    body {
+      background:
+        radial-gradient(900px 600px at 15% 0%, rgba(45, 212, 191, 0.16), transparent 55%),
+        radial-gradient(900px 650px at 92% 18%, rgba(132, 204, 22, 0.12), transparent 60%),
+        radial-gradient(900px 600px at 55% 110%, rgba(16, 185, 129, 0.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(90deg, rgba(45, 212, 191, 0.06) 0 1px, transparent 1px 64px),
+        repeating-linear-gradient(0deg, rgba(132, 204, 22, 0.04) 0 1px, transparent 1px 72px);
+      mask-image: radial-gradient(circle at 30% 18%, rgba(0,0,0,0.9), transparent 62%);
+      opacity: 0.9;
+    }
+
+    header {
+      background: linear-gradient(180deg, rgba(6, 17, 13, 0.92), rgba(6, 17, 13, 0.72));
+      border-bottom: 1px solid rgba(167, 243, 208, 0.12);
+    }
+
+    header::after {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.55), rgba(132, 204, 22, 0.55), transparent);
+      opacity: 0.9;
+    }
+
+    nav a:focus-visible,
+    .button:focus-visible,
+    .toggle:focus-visible,
+    .carousel-btn:focus-visible {
+      outline: 2px solid rgba(45, 212, 191, 0.55);
+      outline-offset: 2px;
+    }
+
+    nav a {
+      border-radius: 999px;
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(6, 17, 13, 0.35);
+      color: rgba(236, 253, 245, 0.86);
+    }
+
+    nav a:hover {
+      border-color: rgba(45, 212, 191, 0.30);
+      background: rgba(45, 212, 191, 0.08);
+      color: rgba(236, 253, 245, 0.92);
+    }
+
+    /* Wider layout for two-column pages */
+    section {
+      max-width: 1200px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1.65fr 0.6fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .facts {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .facts li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+      padding: 0.5rem 0.6rem;
+      border-radius: 12px;
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(6, 17, 13, 0.28);
+    }
+
+    .facts strong {
+      color: rgba(236, 253, 245, 0.92);
+      font-weight: 700;
+    }
+
+    .facts span {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .hero-title {
+      margin: 0 0 0.75rem;
+      color: rgba(236, 253, 245, 0.92);
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      text-align: center;
+    }
+
+    .toggle:hover {
+      border-color: rgba(45, 212, 191, 0.32);
+      box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.08), var(--shadow-soft);
+    }
+
+    .card {
+      background:
+        radial-gradient(420px 220px at 15% 0%, rgba(45, 212, 191, 0.10), transparent 55%),
+        radial-gradient(420px 220px at 90% 20%, rgba(132, 204, 22, 0.08), transparent 55%),
+        linear-gradient(180deg, rgba(7, 16, 13, 0.82), rgba(7, 16, 13, 0.62));
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      box-shadow: var(--shadow-soft);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(45, 212, 191, 0.28);
+      box-shadow: 0 0 0 6px rgba(45, 212, 191, 0.08);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .button {
+      background: linear-gradient(135deg, var(--leaf), var(--moss));
+      color: rgba(5, 10, 8, 0.92);
+      font-weight: 800;
+    }
+
+    .carousel {
+      border-radius: var(--radius);
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .carousel-btn {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+    }
+
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+
+    .carousel-dots .active {
+      background: var(--leaf);
+    }
+
+    .light {
+      --bg: #f3faf6;
+      --bg2: #eef7f2;
+      --surface: rgba(255, 255, 255, 0.74);
+      --surface-strong: rgba(255, 255, 255, 0.9);
+      --border: rgba(6, 17, 13, 0.14);
+      --text: rgba(6, 17, 13, 0.92);
+      --muted: rgba(6, 17, 13, 0.70);
+      color-scheme: light;
+    }
   </style>
 </head>
 <body>
 
-  <div class="toggle" onclick="toggleTheme()">Toggle Theme</div>
+  <button class="toggle" id="themeToggle" type="button">Theme: Dark</button>
 
   <header>
     <h1>Michael Gray</h1>
     <p>Game Developer | Unreal Engine | C++ | Unity | C#</p>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="index.html" aria-label="Home" title="Home">⌂</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
   </header>
 
     <section class="hero">
-    <img src="Images/voidcoil.jpg" alt="Potion Panic Screenshot" class="hero-image">
-      <h2> Voidcoil</h2>
-    <p>Voidcoil recreates the classic arcade game Centipede with a space twist. The goal was to build a game from scratch without using an engine.</p>
-
-    <div class="tech-tags">
-      <span>Unity</span>
-      <span>C#</span>
-      <span>UI Systems</span>
+    <h2 class="hero-title">Voidcoil</h2>
+    <div class="carousel">
+      <div class="carousel-track">
+        <img src="Images/voidcoil-mainmenu.png" class="slide active">
+        <img src="Images/voidcoil-game.png" class="slide">
+        <img src="Images/voidcoil-game2.png" class="slide">
+        <img src="Images/voidcoil-game3.png" class="slide">
+        <img src="Images/voidcoil-controls.png" class="slide">
+        <img src="Images/voidcoil-settings.png" class="slide">
+      </div>
+    
+      <button class="carousel-btn prev" aria-label="Previous screenshot">&#10094;</button>
+      <button class="carousel-btn next" aria-label="Next screenshot">&#10095;</button>
     </div>
+
+    <div class="carousel-dots" aria-label="Screenshot navigation"></div>
   </section>
 
   <section>
+    <div class="page-grid">
+      <div>
     <div class="card">
       <h2>Overview</h2>
       <p>
         A fast-paced, arcade-style shooter inspired by Centipede Chaos, this space-themed game challenges players to destroy a segmented enemy known as the Voidcoil as it snakes down the screen while navigating around obstacles. Players earn points by eliminating enemies—including astronauts and asteroids—and destroying environmental hazards like planets and satellites. Across three progressively challenging levels, the ultimate goal is to fully eliminate the Voidcoil while maximizing score and survival.
       </p>
-    </div>
-
-    <div class="card">
-      <h2>Screenshots</h2>
-      <div class="carousel">
-        <div class="carousel-track">
-          <img src="Images/voidcoil-mainmenu.png" class="slide active">
-          <img src="Images/voidcoil-game.png" class="slide">
-          <img src="Images/voidcoil-game2.png" class="slide">
-          <img src="Images/voidcoil-game3.png" class="slide">
-          <img src="Images/voidcoil-controls.png" class="slide">
-          <img src="Images/voidcoil-settings.png" class="slide">
-        </div>
-      
-        <button class="carousel-btn prev">&#10094;</button>
-        <button class="carousel-btn next">&#10095;</button>
-      </div>
-
-      <div class="carousel-dots"></div>
     </div>
 
     <div class="card">
@@ -291,23 +597,31 @@
       <br>
       <a class="button" href="https://github.com/Smitch-TS/Voidcoil" target="_blank">View Code Repo</a>
     </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h2>Project Facts</h2>
+          <ul class="facts" aria-label="Project facts">
+            <li><strong>Length</strong><span>1 month</span></li>
+            <li><strong>Team size</strong><span>4</span></li>
+            <li><strong>Role</strong><span>UI / Systems</span></li>
+            <li><strong>Tech</strong><span>C++ / Vulkan</span></li>
+            <li><strong>UI</strong><span>Dear ImGui</span></li>
+            <li><strong>Engine</strong><span>None (from scratch)</span></li>
+            <li><strong>Focus</strong><span>Architecture, UI, performance</span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
   </section>
 
-  <footer style="text-align:center; padding:2rem; background:#1e293b;">
+  <footer style="text-align:center; padding:2rem; background: rgba(0, 0, 0, 0.78); border-top: 1px solid rgba(148, 163, 184, 0.18); position: relative;">
+    <div aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:8px; background: repeating-linear-gradient(135deg, var(--accent2) 0 14px, rgba(0,0,0,0) 14px 24px); opacity:0.7; pointer-events:none;"></div>
     <p>© 2026 Michael Gray</p>
   </footer>
 
   <script>
-    function toggleTheme() {
-      document.body.classList.toggle('light');
-    }
-  </script>
-
-  <script>
-      function toggleTheme() {
-        document.body.classList.toggle('light');
-      }
-    
       const track = document.querySelector('.carousel-track');
       const slides = document.querySelectorAll('.slide');
       const nextBtn = document.querySelector('.next');
@@ -316,6 +630,23 @@
     
       let currentIndex = 0;
       let autoPlayInterval;
+
+      const themeToggle = document.getElementById('themeToggle');
+
+      function applyTheme(mode) {
+        const isLight = mode === 'light';
+        document.body.classList.toggle('light', isLight);
+        themeToggle.textContent = `Theme: ${isLight ? 'Light' : 'Dark'}`;
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+
+      themeToggle.addEventListener('click', () => {
+        const next = document.body.classList.contains('light') ? 'dark' : 'light';
+        localStorage.setItem('theme', next);
+        applyTheme(next);
+      });
     
       // === POSITION SLIDES ===
       function updateCarousel() {

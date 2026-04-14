@@ -114,33 +114,396 @@
       max-width: 300px;
     }
 
+    /* Carousel (empty for now; populate later) */
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto 1rem;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.45);
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 999px;
+      z-index: 2;
+    }
+
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+
+    .carousel-dots {
+      text-align: center;
+      margin: 0.5rem 0 1.2rem;
+    }
+
+    .carousel-dots span {
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+      margin: 5px;
+      background: #64748b;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .carousel-dots .active {
+      background: #38bdf8;
+    }
+
+    .carousel-empty {
+      display: grid;
+      place-items: center;
+      min-height: 260px;
+      padding: 1.25rem;
+      color: rgba(226, 232, 240, 0.75);
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px dashed rgba(148, 163, 184, 0.35);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    /* =========================================================
+       Nature × Technology Overhaul (overrides above styles)
+       ========================================================= */
+    :root {
+      --bg: #06110d;
+      --bg2: #050a08;
+      --surface: rgba(7, 16, 13, 0.68);
+      --surface-strong: rgba(7, 16, 13, 0.88);
+      --border: rgba(167, 243, 208, 0.14);
+      --text: rgba(236, 253, 245, 0.92);
+      --muted: rgba(167, 243, 208, 0.72);
+      --leaf: #2dd4bf;
+      --moss: #84cc16;
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+      --shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.32);
+      --radius: 16px;
+      --radius2: 26px;
+      color-scheme: dark;
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background:
+        radial-gradient(900px 600px at 15% 0%, rgba(45, 212, 191, 0.16), transparent 55%),
+        radial-gradient(900px 650px at 92% 18%, rgba(132, 204, 22, 0.12), transparent 60%),
+        radial-gradient(900px 600px at 55% 110%, rgba(16, 185, 129, 0.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      line-height: 1.65;
+      letter-spacing: 0.1px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(90deg, rgba(45, 212, 191, 0.06) 0 1px, transparent 1px 64px),
+        repeating-linear-gradient(0deg, rgba(132, 204, 22, 0.04) 0 1px, transparent 1px 72px);
+      mask-image: radial-gradient(circle at 30% 18%, rgba(0,0,0,0.9), transparent 62%);
+      opacity: 0.9;
+    }
+
+    header {
+      background: linear-gradient(180deg, rgba(6, 17, 13, 0.92), rgba(6, 17, 13, 0.72));
+      border-bottom: 1px solid rgba(167, 243, 208, 0.12);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-soft);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.55), rgba(132, 204, 22, 0.55), transparent);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    nav a {
+      display: inline-block;
+      margin: 0.25rem 0.5rem;
+      color: rgba(236, 253, 245, 0.86);
+      text-decoration: none;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(6, 17, 13, 0.35);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    nav a:hover {
+      transform: translateY(-1px);
+      border-color: rgba(45, 212, 191, 0.30);
+      background: rgba(45, 212, 191, 0.08);
+    }
+
+    nav a:focus-visible,
+    .button:focus-visible,
+    .toggle:focus-visible {
+      outline: 2px solid rgba(45, 212, 191, 0.55);
+      outline-offset: 2px;
+    }
+
+    section { position: relative; z-index: 1; }
+
+    /* Wider layout for two-column pages */
+    section {
+      max-width: 1200px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1.65fr 0.6fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .facts {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .facts li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+      padding: 0.5rem 0.6rem;
+      border-radius: 12px;
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(6, 17, 13, 0.28);
+    }
+
+    .facts strong {
+      color: rgba(236, 253, 245, 0.92);
+      font-weight: 700;
+    }
+
+    .facts span {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .hero-title {
+      margin: 0 0 0.75rem;
+      color: rgba(236, 253, 245, 0.92);
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      text-align: center;
+    }
+
+    .hero-meta {
+      margin: -0.45rem 0 0.85rem;
+      color: var(--muted);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .card {
+      background:
+        radial-gradient(420px 220px at 15% 0%, rgba(45, 212, 191, 0.10), transparent 55%),
+        radial-gradient(420px 220px at 90% 20%, rgba(132, 204, 22, 0.08), transparent 55%),
+        linear-gradient(180deg, rgba(7, 16, 13, 0.82), rgba(7, 16, 13, 0.62));
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      box-shadow: var(--shadow-soft);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(45, 212, 191, 0.28);
+      box-shadow: 0 0 0 6px rgba(45, 212, 191, 0.08);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .button {
+      background: linear-gradient(135deg, var(--leaf), var(--moss));
+      color: rgba(5, 10, 8, 0.92);
+      font-weight: 800;
+      border-radius: 999px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+    }
+
+    .tech-tags span {
+      background: rgba(6, 17, 13, 0.40);
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      border-radius: 999px;
+    }
+
+    .carousel {
+      border-radius: var(--radius);
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .carousel-btn {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+    }
+
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+
+    .carousel-dots .active {
+      background: var(--leaf);
+    }
+
+    .carousel-empty {
+      background:
+        radial-gradient(420px 220px at 15% 0%, rgba(45, 212, 191, 0.10), transparent 55%),
+        radial-gradient(420px 220px at 90% 20%, rgba(132, 204, 22, 0.08), transparent 55%),
+        linear-gradient(180deg, rgba(7, 16, 13, 0.82), rgba(7, 16, 13, 0.62));
+      border: 1px dashed rgba(167, 243, 208, 0.24);
+      color: var(--muted);
+      border-radius: var(--radius);
+    }
+
+    .video-embed {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      box-shadow: var(--shadow-soft);
+      background: rgba(6, 17, 13, 0.35);
+    }
+
+    .video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .toggle {
+      background: var(--surface-strong);
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      border-radius: 999px;
+    }
+
+    footer {
+      background: rgba(6, 17, 13, 0.72) !important;
+      border-top: 1px solid rgba(167, 243, 208, 0.12);
+    }
+
+    .light {
+      --bg: #f3faf6;
+      --bg2: #eef7f2;
+      --surface: rgba(255, 255, 255, 0.74);
+      --surface-strong: rgba(255, 255, 255, 0.9);
+      --border: rgba(6, 17, 13, 0.14);
+      --text: rgba(6, 17, 13, 0.92);
+      --muted: rgba(6, 17, 13, 0.70);
+      color-scheme: light;
+    }
+
   </style>
 </head>
 <body>
 
-  <div class="toggle" onclick="toggleTheme()">Toggle Theme</div>
+  <button class="toggle" id="themeToggle" type="button">Theme: Dark</button>
 
   <header>
     <h1>Michael Gray</h1>
     <p>Game Developer | Unreal Engine | C++ | Unity | C#</p>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="index.html" aria-label="Home" title="Home">⌂</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
   </header>
 
     <section class="hero">
-    <img src="Images/potion-panic.png" alt="Potion Panic Screenshot" class="hero-image">
-    <p>Multiplayer Unreal Engine capstone project.</p>
+    <h2 class="hero-title">Potion Panic</h2>
+    <p class="hero-meta">Planned release date: June 2026</p>
+    <div class="carousel" aria-label="Project screenshots">
+      <div class="carousel-track">
+        <img src="Images/PotionPanic-MainMenu.png" class="slide active" alt="Potion Panic main menu">
+        <img src="Images/PotionPanic-LevelSelect.png" class="slide" alt="Potion Panic level select">
+        <img src="Images/PotionPanic-Tutorial.png" class="slide" alt="Potion Panic tutorial">
+        <img src="Images/PotionPanic-Level1.png" class="slide" alt="Potion Panic level 1 gameplay">
+        <img src="Images/PotionPanic-Level2.png" class="slide" alt="Potion Panic level 2 gameplay">
+      </div>
 
-    <div class="tech-tags">
-      <span>Unreal Engine 5</span>
-      <span>C++</span>
-      <span>Multiplayer</span>
-      <span>UI Systems</span>
+      <div class="carousel-empty" hidden>
+        <p style="margin:0;"><strong>Screenshots carousel</strong><br>Add images to the carousel track when ready.</p>
+      </div>
+
+      <button class="carousel-btn prev" aria-label="Previous screenshot" hidden>&#10094;</button>
+      <button class="carousel-btn next" aria-label="Next screenshot" hidden>&#10095;</button>
     </div>
+
+    <div class="carousel-dots" aria-label="Screenshot navigation" hidden></div>
+
   </section>
 
   <section>
+    <div class="page-grid">
+      <div>
     <div class="card">
       <h2>Overview</h2>
       <p>
@@ -149,11 +512,10 @@
     </div>
 
     <div class="card">
-      <h2>Design and Gameplay</h2>
-      <h3>Documents</h3>
-      <a class="button" href="Documents/potion-panic-design-doc.pdf" target="_blank">View Design Document</a>
-      <h3>V0.0.2 - March 19</h3>
-      <iframe width="1065" height="608" src="https://www.youtube.com/embed/lHc1jYLWGq0" title="Potion Panic V002 Update" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <h2>Gameplay Trailer</h2>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/lHc1jYLWGq0" title="Potion Panic V002 Update" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
     </div>
 
     <div class="card">
@@ -212,10 +574,29 @@
     </div>
 
     <div class="card">
+      <h2>Documents</h2>
+      <a class="button" href="Documents/potion-panic-design-doc.pdf" target="_blank">Design Document</a>
       <h2>Links</h2>
       <a class="button" href="https://null-forge-studio.itch.io/potionpanic" target="_blank">Play on Itch</a>
       <!-- Add GitHub if you have it -->
       <!-- <a class="button" href="#">View Code</a> -->
+    </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h2>Project Facts</h2>
+          <ul class="facts" aria-label="Project facts">
+            <li><strong>Length</strong><span>Ongoing Project</span></li>
+            <li><strong>Team size</strong><span>4</span></li>
+            <li><strong>Role</strong><span>Gameplay / UI</span></li>
+            <li><strong>Engine</strong><span>Unreal Engine 5</span></li>
+            <li><strong>Language</strong><span>C++</span></li>
+            <li><strong>Platform</strong><span>PC</span></li>
+            <li><strong>Focus</strong><span>Multiplayer, UX</span></li>
+          </ul>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -224,8 +605,85 @@
   </footer>
 
   <script>
-    function toggleTheme() {
-      document.body.classList.toggle('light');
+    const themeToggle = document.getElementById('themeToggle');
+
+    function applyTheme(mode) {
+      const isLight = mode === 'light';
+      document.body.classList.toggle('light', isLight);
+      themeToggle.textContent = `Theme: ${isLight ? 'Light' : 'Dark'}`;
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+
+    themeToggle.addEventListener('click', () => {
+      const next = document.body.classList.contains('light') ? 'dark' : 'light';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+
+    // Carousel init (safe when empty)
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel .slide');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const emptyState = document.querySelector('.carousel-empty');
+
+    if (track && dotsContainer && slides.length > 0) {
+      let currentIndex = 0;
+      let autoPlayInterval;
+
+      if (emptyState) emptyState.hidden = true;
+      if (nextBtn) nextBtn.hidden = false;
+      if (prevBtn) prevBtn.hidden = false;
+      dotsContainer.hidden = false;
+
+      function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        document.querySelectorAll('.carousel-dots span').forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+      }
+
+      function startAutoplay() {
+        autoPlayInterval = setInterval(() => {
+          currentIndex = (currentIndex + 1) % slides.length;
+          updateCarousel();
+        }, 3500);
+      }
+
+      function resetAutoplay() {
+        clearInterval(autoPlayInterval);
+        startAutoplay();
+      }
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarousel();
+          resetAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+      });
+
+      nextBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+        resetAutoplay();
+      });
+
+      prevBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+        resetAutoplay();
+      });
+
+      updateCarousel();
+      startAutoplay();
+    } else {
+      if (emptyState) emptyState.hidden = false;
     }
   </script>
 
