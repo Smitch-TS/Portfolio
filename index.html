@@ -84,7 +84,8 @@
     }
 
     /* Button */
-    .button {
+    .button,
+    .project-btn {
       display: inline-block;
       margin-top: 0.5rem;
       padding: 0.5rem 1rem;
@@ -95,7 +96,8 @@
       transition: transform 0.2s ease;
     }
 
-    .button:hover {
+    .button:hover,
+    .project-btn:hover {
       transform: scale(1.05);
     }
 
@@ -163,28 +165,6 @@
       object-fit: cover;
       border: 3px solid #3EC1D3;
       box-shadow: 0 0 15px rgba(62, 193, 211, 0.4);
-    }
-
-    .project-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 16px;
-      background-color: #4CAF50; /* change to match your theme */
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 500;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-      align-self: flex-start;
-    }
-
-    .project-btn:hover {
-      background-color: #45a049;
-      transform: translateY(-2px);
-    }
-
-    .project-btn:active {
-      transform: translateY(0);
     }
 
     @media (max-width: 768px) {
