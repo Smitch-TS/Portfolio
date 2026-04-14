@@ -176,18 +176,6 @@
       background: #38bdf8;
     }
 
-    .carousel-empty {
-      display: grid;
-      place-items: center;
-      min-height: 260px;
-      padding: 1.25rem;
-      color: rgba(226, 232, 240, 0.75);
-      background: rgba(30, 41, 59, 0.7);
-      border: 1px dashed rgba(148, 163, 184, 0.35);
-      border-radius: 12px;
-      text-align: center;
-    }
-
     /* =========================================================
        Nature × Technology Overhaul (overrides above styles)
        ========================================================= */
@@ -407,16 +395,6 @@
       background: var(--leaf);
     }
 
-    .carousel-empty {
-      background:
-        radial-gradient(420px 220px at 15% 0%, rgba(45, 212, 191, 0.10), transparent 55%),
-        radial-gradient(420px 220px at 90% 20%, rgba(132, 204, 22, 0.08), transparent 55%),
-        linear-gradient(180deg, rgba(7, 16, 13, 0.82), rgba(7, 16, 13, 0.62));
-      border: 1px dashed rgba(167, 243, 208, 0.24);
-      color: var(--muted);
-      border-radius: var(--radius);
-    }
-
     .video-embed {
       position: relative;
       width: 100%;
@@ -487,10 +465,7 @@
         <img src="Images/PotionPanic-Tutorial.png" class="slide" alt="Potion Panic tutorial">
         <img src="Images/PotionPanic-Level1.png" class="slide" alt="Potion Panic level 1 gameplay">
         <img src="Images/PotionPanic-Level2.png" class="slide" alt="Potion Panic level 2 gameplay">
-      </div>
-
-      <div class="carousel-empty" hidden>
-        <p style="margin:0;"><strong>Screenshots carousel</strong><br>Add images to the carousel track when ready.</p>
+        <img src="Images/PotionPanic-RoundOver.png" class="slide" alt="Potion Panic end of round gameplay">
       </div>
 
       <button class="carousel-btn prev" aria-label="Previous screenshot" hidden>&#10094;</button>
@@ -628,13 +603,11 @@
     const nextBtn = document.querySelector('.carousel-btn.next');
     const prevBtn = document.querySelector('.carousel-btn.prev');
     const dotsContainer = document.querySelector('.carousel-dots');
-    const emptyState = document.querySelector('.carousel-empty');
 
     if (track && dotsContainer && slides.length > 0) {
       let currentIndex = 0;
       let autoPlayInterval;
 
-      if (emptyState) emptyState.hidden = true;
       if (nextBtn) nextBtn.hidden = false;
       if (prevBtn) prevBtn.hidden = false;
       dotsContainer.hidden = false;
@@ -682,8 +655,6 @@
 
       updateCarousel();
       startAutoplay();
-    } else {
-      if (emptyState) emptyState.hidden = false;
     }
   </script>
 
