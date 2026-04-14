@@ -6,21 +6,41 @@
   <title>My Portfolio</title>
 
   <style>
+    :root {
+      --neon-blue: #38bdf8;
+      --neon-purple: #a78bfa;
+      --neon-pink: #f472b6;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0f172a;
+      background: radial-gradient(circle at 20% 20%, #1a1f3a, #020617 70%);
       color: #e2e8f0;
       overflow-x: hidden;
+    }
+    
+    body::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(56,189,248,0.08), transparent 40%);
+      animation: moveBg 20s linear infinite;
+      z-index: -1;
+    }
+    
+    @keyframes moveBg {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(-10%, -10%); }
+      100% { transform: translate(0,0); }
     }
 
     header {
       padding: 2rem;
       text-align: center;
-      background: #1e293b;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      background: linear-gradient(90deg, #0f172a, #1e293b);
+      border-bottom: 1px solid rgba(56,189,248,0.2);
     }
 
     header h1 {
@@ -28,10 +48,20 @@
       font-size: 2.5rem;
     }
 
+    h2 {
+      color: var(--neon-purple);
+      text-shadow: 0 0 8px rgba(167,139,250,0.4);
+    }
+
     nav a {
       margin: 0 1rem;
-      color: #38bdf8;
+      color: var(--neon-blue);
       text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    nav a:hover {
+      color: var(--neon-purple);
     }
 
     section {
@@ -47,17 +77,23 @@
     }
 
     .card {
-      background: #1e293b;
+      background: linear-gradient(145deg, #0f172a, #1e293b);
       padding: 1rem;
-      border-radius: 10px;
-
+      border-radius: 12px;
+      border: 1px solid rgba(167,139,250,0.2);
+    
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-
+    
       transform: translateY(20px);
       opacity: 0;
-      transition: all 0.6s ease;
+      transition: all 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 0 20px rgba(167,139,250,0.3);
     }
 
     .card.visible {
@@ -84,19 +120,19 @@
     }
 
     /* Button */
-    .button {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: #38bdf8;
-      color: #0f172a;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: transform 0.2s ease;
+    .button,
+    .project-btn {
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      color: #020617;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
-    .button:hover {
-      transform: scale(1.05);
+    .button:hover,
+    .project-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 12px rgba(167,139,250,0.6);
     }
 
     /* Dark / Light toggle */
@@ -106,14 +142,9 @@
     }
 
     .toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
-      background: #38bdf8;
-      color: black;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      color: #020617;
+      box-shadow: 0 0 10px rgba(167,139,250,0.5);
     }
 
     video, img {
@@ -128,20 +159,20 @@
     }
 
     .skill-card {
-      background: #1e293b;
+      background: linear-gradient(145deg, #0f172a, #1e293b);
       padding: 1rem;
-      border-radius: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(56,189,248,0.2);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-
+    
     .skill-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(62, 193, 211, 0.3);
+      box-shadow: 0 0 15px rgba(56,189,248,0.35);
     }
 
     .skill-card h3 {
-      margin-top: 0;
-      color: #3EC1D3;
+      color: var(--neon-blue);
     }
 
     .about-container {
@@ -165,24 +196,6 @@
       box-shadow: 0 0 15px rgba(62, 193, 211, 0.4);
     }
 
-    .project-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 16px;
-      background-color: #4CAF50; /* change to match your theme */
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 500;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-      align-self: flex-start;
-    }
-
-    .project-btn:hover {
-      background-color: #45a049;
-      transform: translateY(-2px);
-    }
-
     .project-btn:active {
       transform: translateY(0);
     }
@@ -192,6 +205,10 @@
         flex-direction: column;
         text-align: center;
       }
+    }
+
+    section + section {
+      margin-top: 1rem;
     }
 
   </style>
@@ -216,6 +233,7 @@
 
     <div>
     <h2>About Me</h2>
+    <p>
       I’m a game developer focused on building systems that make games feel great. I work in C++, C#, Unreal, and Unity, and have led small teams while developing core systems like game state, networking, and UI. With a background in healthcare tech and recruiting for game startups, I’m strong in cross-team collaboration and execution—not just ideas. My goal is to work on games and software that make an impact.
     </p>
     </div>
