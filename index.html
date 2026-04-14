@@ -1,222 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Game Dev Portfolio World</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
 
-<style>
-:root {
-  --gold: #e6b566;
-  --sand: #d8c3a5;
-  --leaf: #7aa874;
-  --forest: #2f4f2f;
-  --soil: #3e2a1f;
-  --dark: #0b120d;
-  --text: #f5f5f0;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
 
-/* =========================
-   BASE
-========================= */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: var(--text);
-  overflow-x: hidden;
-  background: radial-gradient(circle at 40% 20%, #2f4f2f, #0b120d 70%);
-}
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-/* 🌫️ FOG */
-.world-bg {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(
-    circle at 50% 30%,
-    rgba(230,181,102,0.08),
-    rgba(0,0,0,0.7)
-  );
-  pointer-events: none;
-  z-index: 0;
-}
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
 
-/* =========================
-   CAMERA
-========================= */
-.world-content {
-  position: relative;
-  z-index: 2;
-  transform: translateY(0px);
-  transition: transform 0.1s linear;
-}
+    nav a {
+      margin: 0 1rem;
+      color: #38bdf8;
+      text-decoration: none;
+    }
 
-/* =========================
-   LEVEL SELECT
-========================= */
-.level-select {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+    section {
+      padding: 1.5rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
 
-.level-btn {
-  background: linear-gradient(135deg, var(--gold), var(--sand));
-  border: none;
-  padding: 10px 14px;
-  cursor: pointer;
-  border-radius: 8px;
-  font-weight: bold;
-  color: var(--soil);
-  transition: 0.2s;
-}
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
 
-.level-btn:hover {
-  transform: scale(1.05);
-}
+    .card {
+      background: #1e293b;
+      padding: 1rem;
+      border-radius: 10px;
 
-/* =========================
-   SECTIONS (CLOSER TOGETHER)
-========================= */
-section {
-  padding: 40px 20px; /* 🔥 reduced from 80px */
-  max-width: 900px;
-  margin: 0 auto 20px auto; /* tighter spacing between sections */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-  background: rgba(62, 42, 31, 0.25); /* subtle “zone panel” */
-  border: 1px solid rgba(122,168,116,0.15);
-  border-radius: 12px;
-}
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
 
-/* =========================
-   TYPOGRAPHY
-========================= */
-h2 {
-  color: var(--leaf);
-  text-shadow: 0 0 8px rgba(122,168,116,0.3);
-  margin-top: 0;
-}
+    .card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
 
-/* =========================
-   CARDS
-========================= */
-.card {
-  background: rgba(62, 42, 31, 0.85);
-  border: 1px solid rgba(122,168,116,0.2);
-  padding: 1rem;
-  border-radius: 12px;
-  margin-top: 10px;
-}
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #1e293b;
+    }
 
-/* =========================
-   BUTTONS
-========================= */
-.button {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 12px 18px;
-  background: linear-gradient(135deg, var(--gold), var(--sand));
-  color: var(--soil);
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
-}
+    /* Fade-in animation */
+    .fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
 
-/* =========================
-   ABOUT
-========================= */
-.about {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
+    .fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.profile {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 3px solid var(--leaf);
-}
+    /* Button */
+    .button {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #38bdf8;
+      color: #0f172a;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
 
-/* =========================
-   FOOTER
-========================= */
-footer {
-  text-align: center;
-  padding: 30px;
-  background: rgba(0,0,0,0.4);
-  margin-top: 20px;
-}
-</style>
+    .button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Dark / Light toggle */
+    .light {
+      background: #ffffff;
+      color: #0f172a;
+    }
+
+    .toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      background: #38bdf8;
+      color: black;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    video, img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: #1e293b;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(62, 193, 211, 0.3);
+    }
+
+    .skill-card h3 {
+      margin-top: 0;
+      color: #3EC1D3;
+    }
+
+    .about-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      max-width: 900px;
+    }
+
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #3EC1D3;
+      box-shadow: 0 0 15px rgba(62, 193, 211, 0.4);
+    }
+
+    .project-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background-color: #4CAF50; /* change to match your theme */
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      align-self: flex-start;
+    }
+
+    .project-btn:hover {
+      background-color: #45a049;
+      transform: translateY(-2px);
+    }
+
+    .project-btn:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+  </style>
 </head>
-
 <body>
 
-<!-- 🌫️ FOG -->
-<div class="world-bg"></div>
+  <div class="toggle" onclick="toggleTheme()">Toggle Theme</div>
 
-<!-- 🧭 LEVEL SELECT -->
-<div class="level-select">
-  <button class="level-btn" onclick="goTo(0)">About</button>
-  <button class="level-btn" onclick="goTo(1)">Skills</button>
-  <button class="level-btn" onclick="goTo(2)">Projects</button>
-  <button class="level-btn" onclick="goTo(3)">Contact</button>
-</div>
+  <header>
+    <h1>Michael Gray</h1>
+    <p>Game Developer | Unreal Engine | C++ | Unity | C#</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<!-- 🌍 WORLD -->
-<div class="world-content" id="world">
+  <section id="about" class="fade">
+    <div class="about-content">
+    <img src="Images/HeadShot.jpg" alt="Profile Picture" class="profile-pic">
 
-<section>
-  <div class="about">
-    <img src="Images/HeadShot.jpg" class="profile"/>
     <div>
-      <h2>About Me</h2>
-      <p>
-        Game developer focused on systems, gameplay, and multiplayer engineering.
-      </p>
+    <h2>About Me</h2>
+      I’m a game developer focused on building systems that make games feel great. I work in C++, C#, Unreal, and Unity, and have led small teams while developing core systems like game state, networking, and UI. With a background in healthcare tech and recruiting for game startups, I’m strong in cross-team collaboration and execution—not just ideas. My goal is to work on games and software that make an impact.
+    </p>
     </div>
+
+  </div>
+  </section>
+
+  <section id="skills" class="fade">
+  <h2>Skills</h2>
+
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <h3>Languages</h3>
+      <p>C++, C#, SQL</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Game Development</h3>
+      <p>Unreal Engine, Unity, Blueprints, Multiplayer Systems, UI</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Graphics / Tools</h3>
+      <p>Vulkan, Dear ImGui</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Core Concepts</h3>
+      <p>Data Structures, Systems Programming, Data-Driven Architecture</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Workflow</h3>
+      <p>GitHub, Perforce, Jira, Conflunece, Trello, Notion, Figma</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Strengths</h3>
+      <p>Team Leadership, Cross-Discipline Communication, Project Ownership</p>
+    </div>
+
   </div>
 </section>
 
-<section>
-  <h2>Skills</h2>
-  <div class="card">C++, C#, Unreal, Unity</div>
-  <div class="card">Multiplayer Systems</div>
-  <div class="card">Game Architecture</div>
-</section>
+  <section id="projects" class="fade">
+    <h2>Projects</h2>
 
-<section>
-  <h2>Projects</h2>
-  <div class="card">Potion Panic</div>
-  <div class="card">Voidcoil</div>
-  <div class="card">Operation Starfall</div>
-</section>
+    <div class="projects">
 
-<section>
-  <h2>Contact</h2>
-  <p>Email: michael.gray.dev@gmail.com</p>
-  <a class="button">View Resume</a>
-</section>
+      <div class="card">
+        <iframe frameborder="0" src="https://itch.io/embed/4345652" width="100%" height="200"><a href="https://null-forge-studio.itch.io/potionpanic">Potion Panic by Null Forge Studio, ShizNizz, AstonMartinez, Smitch_of_the_Nook, TheAngelofChaos</a></iframe>
+        <h3>Potion Panic</h3>
+        <p>Arcade style multiplayer game inspired by games like Overcooked. This is my Capstone Project for my Game Development program.</p>
+        <a href="project-potion-panic.html" class="project-btn">View Project</a>
+      </div>
 
-<footer>© 2026 Michael Gray</footer>
+      <div class="card">
+        <iframe height="200" frameborder="0" src="https://itch.io/embed/3910417" width="100%"><a href="https://smitch-of-the-nook.itch.io/voidcoil">Voidcoil by Smitch_of_the_Nook</a></iframe>
+        <h3>Voidcoil</h3>
+        <p>Centipede-like arcade game built using C++, GateWare, Vulkan, and Dear ImGui. Goal of the project was to build a game without an engine.</p>
+        <a href="project-voidcoil.html" class="project-btn">View Project</a>
+      </div>
 
-</div>
+      <div class="card">
+        <iframe height="200" frameborder="0" src="https://itch.io/embed/4456322" width="100%"><a href="https://smitch-of-the-nook.itch.io/operation-starfull">Operation Starfull by Smitch_of_the_Nook</a></iframe>
+        <h3>Operation Starfall</h3>
+        <p>Fast-paced Unity shooter with modular systems. The goal of this project was to build a game in one month in a team setting.</p>
+        <a href="project-operation-starfall.html" class="project-btn">View Project</a>
+      </div>
 
-<script>
-function goTo(level) {
-  window.scrollTo({
-    top: document.body.scrollHeight * (level / 4),
-    behavior: "smooth"
-  });
-}
-</script>
+    </div>
+  </section>
+
+  <section id="contact" class="fade">
+    <h2>Contact</h2>
+    <p>Email: michael.gray.dev@gmail.com</p>
+    <p>GitHub: <a href="https://github.com/Smitch-TS">github.com/Smitch-TS</a></p>
+    <a class="button" href="Files/resume.pdf" target="_blank">View Resume</a>
+  </section>
+
+  <footer>
+    <p>© 2026 Michael Gray</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+
+    document.querySelectorAll('.fade, .card').forEach(el => observer.observe(el));
+
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+  </script>
 
 </body>
 </html>
