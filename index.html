@@ -17,7 +17,7 @@
 }
 
 /* =========================
-   BASE WORLD
+   BASE
 ========================= */
 body {
   margin: 0;
@@ -27,7 +27,7 @@ body {
   background: radial-gradient(circle at 40% 20%, #2f4f2f, #0b120d 70%);
 }
 
-/* 🌫️ FOG OVERLAY */
+/* 🌫️ FOG */
 .world-bg {
   position: fixed;
   inset: 0;
@@ -41,7 +41,7 @@ body {
 }
 
 /* =========================
-   CAMERA SYSTEM
+   CAMERA
 ========================= */
 .world-content {
   position: relative;
@@ -51,7 +51,7 @@ body {
 }
 
 /* =========================
-   LEVEL SELECT UI
+   LEVEL SELECT
 ========================= */
 .level-select {
   position: fixed;
@@ -80,16 +80,19 @@ body {
 }
 
 /* =========================
-   SECTIONS
+   SECTIONS (CLOSER TOGETHER)
 ========================= */
 section {
-  min-height: 100vh;
-  padding: 80px 20px;
+  padding: 40px 20px; /* 🔥 reduced from 80px */
   max-width: 900px;
-  margin: auto;
+  margin: 0 auto 20px auto; /* tighter spacing between sections */
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  background: rgba(62, 42, 31, 0.25); /* subtle “zone panel” */
+  border: 1px solid rgba(122,168,116,0.15);
+  border-radius: 12px;
 }
 
 /* =========================
@@ -98,6 +101,7 @@ section {
 h2 {
   color: var(--leaf);
   text-shadow: 0 0 8px rgba(122,168,116,0.3);
+  margin-top: 0;
 }
 
 /* =========================
@@ -108,7 +112,7 @@ h2 {
   border: 1px solid rgba(122,168,116,0.2);
   padding: 1rem;
   border-radius: 12px;
-  margin-top: 1rem;
+  margin-top: 10px;
 }
 
 /* =========================
@@ -116,18 +120,17 @@ h2 {
 ========================= */
 .button {
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 12px;
   padding: 12px 18px;
   background: linear-gradient(135deg, var(--gold), var(--sand));
   color: var(--soil);
   border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
-  cursor: pointer;
 }
 
 /* =========================
-   ABOUT SECTION
+   ABOUT
 ========================= */
 .about {
   display: flex;
@@ -136,8 +139,8 @@ h2 {
 }
 
 .profile {
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   border: 3px solid var(--leaf);
 }
@@ -147,8 +150,9 @@ h2 {
 ========================= */
 footer {
   text-align: center;
-  padding: 40px;
-  background: rgba(0,0,0,0.5);
+  padding: 30px;
+  background: rgba(0,0,0,0.4);
+  margin-top: 20px;
 }
 </style>
 </head>
@@ -206,22 +210,9 @@ footer {
 </div>
 
 <script>
-/* =========================
-   SCROLL CAMERA
-========================= */
-const world = document.getElementById("world");
-
-window.addEventListener("scroll", () => {
-  const y = window.scrollY;
-  world.style.transform = `translateY(${-y * 0.25}px)`;
-});
-
-/* =========================
-   LEVEL NAVIGATION
-========================= */
 function goTo(level) {
   window.scrollTo({
-    top: window.innerHeight * level,
+    top: document.body.scrollHeight * (level / 4),
     behavior: "smooth"
   });
 }
