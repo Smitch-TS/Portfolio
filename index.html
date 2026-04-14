@@ -7,69 +7,133 @@
 
   <style>
     :root {
-      --neon-blue: #38bdf8;
-      --neon-purple: #a78bfa;
-      --neon-pink: #f472b6;
+      --forest-dark: #1b2a1f;
+      --forest: #2f4f2f;
+      --moss: #4f6f52;
+      --leaf: #7aa874;
+
+      --earth: #5a3e2b;
+      --soil: #3e2a1f;
+
+      --sand: #d8c3a5;
+      --gold: #e6b566;
+
+      --text: #f5f5f0;
     }
 
+    /* =========================
+       BASE
+    ========================== */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: radial-gradient(circle at 20% 20%, #1a1f3a, #020617 70%);
-      color: #e2e8f0;
+      color: var(--text);
       overflow-x: hidden;
-    }
-    
-    body::before {
-      content: "";
-      position: fixed;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(56,189,248,0.08), transparent 40%);
-      animation: moveBg 20s linear infinite;
-      z-index: -1;
-    }
-    
-    @keyframes moveBg {
-      0% { transform: translate(0,0); }
-      50% { transform: translate(-10%, -10%); }
-      100% { transform: translate(0,0); }
-    }
-
-    header {
-      padding: 2rem;
-      text-align: center;
-      background: linear-gradient(90deg, #0f172a, #1e293b);
-      border-bottom: 1px solid rgba(56,189,248,0.2);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+      background: var(--forest-dark);
     }
 
     h2 {
-      color: var(--neon-purple);
-      text-shadow: 0 0 8px rgba(167,139,250,0.4);
-    }
-
-    nav a {
-      margin: 0 1rem;
-      color: var(--neon-blue);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    
-    nav a:hover {
-      color: var(--neon-purple);
+      color: var(--leaf);
+      text-shadow: 0 0 6px rgba(122,168,116,0.3);
     }
 
     section {
       padding: 1.5rem 2rem;
       max-width: 900px;
       margin: auto;
+      position: relative;
+      z-index: 2;
     }
 
+    section + section {
+      margin-top: 1rem;
+    }
+
+    /* =========================
+       PARALLAX BACKGROUND
+    ========================== */
+    .parallax {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .layer {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background-repeat: repeat-x;
+      background-size: cover;
+      opacity: 0.25;
+    }
+
+    .layer.back {
+      background: radial-gradient(circle at 30% 40%, #2f4f2f, transparent 60%);
+      animation: moveSlow 60s linear infinite;
+    }
+
+    .layer.mid {
+      background: radial-gradient(circle at 60% 60%, #3e2a1f, transparent 60%);
+      animation: moveMid 40s linear infinite;
+      opacity: 0.2;
+    }
+
+    .layer.front {
+      background: radial-gradient(circle at 40% 80%, #4f6f52, transparent 60%);
+      animation: moveFast 25s linear infinite;
+      opacity: 0.15;
+    }
+
+    @keyframes moveSlow {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(-5%, -5%); }
+      100% { transform: translate(0,0); }
+    }
+
+    @keyframes moveMid {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(-10%, -6%); }
+      100% { transform: translate(0,0); }
+    }
+
+    @keyframes moveFast {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(-15%, -10%); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: linear-gradient(90deg, var(--soil), var(--forest-dark));
+      border-bottom: 1px solid rgba(230,181,102,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: var(--sand);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    /* =========================
+       CARDS
+    ========================== */
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -77,23 +141,25 @@
     }
 
     .card {
-      background: linear-gradient(145deg, #0f172a, #1e293b);
+      background: linear-gradient(145deg, var(--soil), var(--forest-dark));
       padding: 1rem;
       border-radius: 12px;
-      border: 1px solid rgba(167,139,250,0.2);
-    
+      border: 1px solid rgba(122,168,116,0.2);
+
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    
+
       transform: translateY(20px);
       opacity: 0;
       transition: all 0.4s ease, box-shadow 0.3s ease;
+      position: relative;
+      z-index: 2;
     }
 
     .card:hover {
       transform: translateY(-6px) scale(1.01);
-      box-shadow: 0 0 20px rgba(167,139,250,0.3);
+      box-shadow: 0 0 20px rgba(122,168,116,0.25);
     }
 
     .card.visible {
@@ -101,67 +167,9 @@
       opacity: 1;
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #1e293b;
-    }
-
-    /* Fade-in animation */
-    .fade {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease;
-    }
-
-    .fade.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Button */
-    .button,
-    .project-btn {
-      display: inline-block;
-      margin-top: 12px;
-    
-      padding: 12px 20px;          /* bigger click area */
-      font-size: 1rem;             /* increase text size */
-      font-weight: 600;
-    
-      background: linear-gradient(135deg, #38bdf8, #a78bfa);
-      color: #020617;
-      border-radius: 10px;
-    
-      text-decoration: none;
-      letter-spacing: 0.5px;
-    
-      transition: all 0.2s ease;
-    }
-
-    .button:hover,
-    .project-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 12px rgba(167,139,250,0.6);
-    }
-
-    /* Dark / Light toggle */
-    .light {
-      background: #ffffff;
-      color: #0f172a;
-    }
-
-    .toggle {
-      background: linear-gradient(135deg, #38bdf8, #a78bfa);
-      color: #020617;
-      box-shadow: 0 0 10px rgba(167,139,250,0.5);
-    }
-
-    video, img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
+    /* =========================
+       SKILLS
+    ========================== */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -169,27 +177,51 @@
     }
 
     .skill-card {
-      background: linear-gradient(145deg, #0f172a, #1e293b);
+      background: linear-gradient(145deg, var(--soil), var(--forest-dark));
       padding: 1rem;
       border-radius: 12px;
-      border: 1px solid rgba(56,189,248,0.2);
+      border: 1px solid rgba(216,195,165,0.2);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    
+
     .skill-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(56,189,248,0.35);
+      box-shadow: 0 0 15px rgba(216,195,165,0.25);
     }
 
     .skill-card h3 {
-      color: var(--neon-blue);
+      color: var(--leaf);
     }
 
-    .about-container {
-      display: flex;
-      justify-content: center;
+    /* =========================
+       BUTTONS
+    ========================== */
+    .button,
+    .project-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+
+      background: linear-gradient(135deg, var(--gold), var(--sand));
+      color: var(--soil);
+
+      border-radius: 10px;
+      text-decoration: none;
+
+      transition: all 0.2s ease;
     }
 
+    .button:hover,
+    .project-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 12px rgba(230,181,102,0.5);
+    }
+
+    /* =========================
+       ABOUT
+    ========================== */
     .about-content {
       display: flex;
       align-items: center;
@@ -202,30 +234,52 @@
       height: 180px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #3EC1D3;
-      box-shadow: 0 0 15px rgba(62, 193, 211, 0.4);
+      border: 3px solid var(--leaf);
+      box-shadow: 0 0 15px rgba(122,168,116,0.4);
     }
 
-    .project-btn:active {
+    /* =========================
+       ANIMATIONS
+    ========================== */
+    .fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .fade.visible {
+      opacity: 1;
       transform: translateY(0);
     }
 
+    /* =========================
+       FOOTER
+    ========================== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--soil);
+      position: relative;
+      z-index: 2;
+    }
+
     @media (max-width: 768px) {
-    .about-content {
+      .about-content {
         flex-direction: column;
         text-align: center;
       }
     }
-
-    section + section {
-      margin-top: 1rem;
-    }
-
   </style>
 </head>
+
 <body>
 
-  <div class="toggle" onclick="toggleTheme()">Toggle Theme</div>
+  <!-- 🌲 PARALLAX BACKGROUND -->
+  <div class="parallax">
+    <div class="layer back"></div>
+    <div class="layer mid"></div>
+    <div class="layer front"></div>
+  </div>
 
   <header>
     <h1>Michael Gray</h1>
@@ -239,90 +293,54 @@
 
   <section id="about" class="fade">
     <div class="about-content">
-    <img src="Images/HeadShot.jpg" alt="Profile Picture" class="profile-pic">
-
-    <div>
-    <h2>About Me</h2>
-    <p>
-      I’m a game developer focused on building systems that make games feel great. I work in C++, C#, Unreal, and Unity, and have led small teams while developing core systems like game state, networking, and UI. With a background in healthcare tech and recruiting for game startups, I’m strong in cross-team collaboration and execution—not just ideas. My goal is to work on games and software that make an impact.
-    </p>
+      <img src="Images/HeadShot.jpg" class="profile-pic" />
+      <div>
+        <h2>About Me</h2>
+        <p>
+          I’m a game developer focused on building systems that make games feel great.
+          I work in C++, C#, Unreal, and Unity, and have led small teams while developing core systems like game state, networking, and UI.
+        </p>
+      </div>
     </div>
-
-  </div>
   </section>
 
   <section id="skills" class="fade">
-  <h2>Skills</h2>
-
-  <div class="skills-grid">
-
-    <div class="skill-card">
-      <h3>Languages</h3>
-      <p>C++, C#, SQL</p>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><h3>Languages</h3><p>C++, C#, SQL</p></div>
+      <div class="skill-card"><h3>Game Dev</h3><p>Unreal, Unity, UI, Multiplayer</p></div>
+      <div class="skill-card"><h3>Tools</h3><p>Vulkan, ImGui</p></div>
+      <div class="skill-card"><h3>Workflow</h3><p>Git, Jira, Perforce</p></div>
     </div>
-
-    <div class="skill-card">
-      <h3>Game Development</h3>
-      <p>Unreal Engine, Unity, Blueprints, Multiplayer Systems, UI</p>
-    </div>
-
-    <div class="skill-card">
-      <h3>Graphics / Tools</h3>
-      <p>Vulkan, Dear ImGui</p>
-    </div>
-
-    <div class="skill-card">
-      <h3>Core Concepts</h3>
-      <p>Data Structures, Systems Programming, Data-Driven Architecture</p>
-    </div>
-
-    <div class="skill-card">
-      <h3>Workflow</h3>
-      <p>GitHub, Perforce, Jira, Conflunece, Trello, Notion, Figma</p>
-    </div>
-
-    <div class="skill-card">
-      <h3>Strengths</h3>
-      <p>Team Leadership, Cross-Discipline Communication, Project Ownership</p>
-    </div>
-
-  </div>
-</section>
+  </section>
 
   <section id="projects" class="fade">
     <h2>Projects</h2>
-
     <div class="projects">
-
       <div class="card">
-        <iframe frameborder="0" src="https://itch.io/embed/4345652" width="100%" height="200"><a href="https://null-forge-studio.itch.io/potionpanic">Potion Panic by Null Forge Studio, ShizNizz, AstonMartinez, Smitch_of_the_Nook, TheAngelofChaos</a></iframe>
         <h3>Potion Panic</h3>
-        <p>Arcade style multiplayer game inspired by games like Overcooked. This is my Capstone Project for my Game Development program.</p>
-        <a href="project-potion-panic.html" class="project-btn">View Project</a>
+        <p>Multiplayer arcade chaos game.</p>
+        <a class="project-btn">View Project</a>
       </div>
 
       <div class="card">
-        <iframe height="200" frameborder="0" src="https://itch.io/embed/3910417" width="100%"><a href="https://smitch-of-the-nook.itch.io/voidcoil">Voidcoil by Smitch_of_the_Nook</a></iframe>
         <h3>Voidcoil</h3>
-        <p>Centipede-like arcade game built using C++, GateWare, Vulkan, and Dear ImGui. Goal of the project was to build a game without an engine.</p>
-        <a href="project-voidcoil.html" class="project-btn">View Project</a>
+        <p>Engine-free C++ arcade shooter.</p>
+        <a class="project-btn">View Project</a>
       </div>
 
       <div class="card">
-        <iframe height="200" frameborder="0" src="https://itch.io/embed/4456322" width="100%"><a href="https://smitch-of-the-nook.itch.io/operation-starfull">Operation Starfull by Smitch_of_the_Nook</a></iframe>
         <h3>Operation Starfall</h3>
-        <p>Fast-paced Unity shooter with modular systems. The goal of this project was to build a game in one month in a team setting.</p>
-        <a href="project-operation-starfall.html" class="project-btn">View Project</a>
+        <p>Fast-paced Unity shooter.</p>
+        <a class="project-btn">View Project</a>
       </div>
-
     </div>
   </section>
 
   <section id="contact" class="fade">
     <h2>Contact</h2>
     <p>Email: michael.gray.dev@gmail.com</p>
-    <p>GitHub: <a href="https://github.com/Smitch-TS">github.com/Smitch-TS</a></p>
-    <a class="button" href="Files/resume.pdf" target="_blank">View Resume</a>
+    <a class="button">View Resume</a>
   </section>
 
   <footer>
@@ -339,10 +357,6 @@
     });
 
     document.querySelectorAll('.fade, .card').forEach(el => observer.observe(el));
-
-    function toggleTheme() {
-      document.body.classList.toggle('light');
-    }
   </script>
 
 </body>
