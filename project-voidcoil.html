@@ -291,7 +291,7 @@
     }
 
     /* =========================================================
-       Nature × Technology Overhaul (overrides above styles)
+       Nature Ã— Technology Overhaul (overrides above styles)
        ========================================================= */
     :root {
       --bg: #06110d;
@@ -490,6 +490,108 @@
       --muted: rgba(6, 17, 13, 0.70);
       color-scheme: light;
     }
+
+    /* === Code snapshots (collapsible) === */
+    .code-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-left: 0.45rem;
+      padding: 0.1rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(167, 243, 208, 0.18);
+      background: rgba(6, 17, 13, 0.35);
+      color: rgba(236, 253, 245, 0.88);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      white-space: nowrap;
+      vertical-align: baseline;
+    }
+
+    .code-link:hover {
+      border-color: rgba(45, 212, 191, 0.34);
+      background: rgba(45, 212, 191, 0.10);
+      transform: translateY(-1px);
+    }
+
+    .code-snapshots {
+      margin-top: 1.25rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    details.code-snap {
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(6, 17, 13, 0.22);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    details.code-snap[open] {
+      background: rgba(6, 17, 13, 0.30);
+      border-color: rgba(45, 212, 191, 0.22);
+    }
+
+    details.code-snap > summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 0.7rem 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-weight: 800;
+      color: rgba(236, 253, 245, 0.92);
+      user-select: none;
+    }
+
+    details.code-snap > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.code-snap > summary .snap-meta {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .code-snap .snap-body {
+      padding: 0 0.9rem 0.9rem;
+    }
+
+    .code-snap pre {
+      margin: 0;
+      padding: 0.85rem;
+      border-radius: 12px;
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(0, 0, 0, 0.28);
+      overflow: auto;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+    }
+
+    .code-snap code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.92rem;
+      color: rgba(236, 253, 245, 0.92);
+    }
+
+    .light .code-link {
+      border-color: rgba(6, 17, 13, 0.18);
+      background: rgba(255, 255, 255, 0.65);
+      color: rgba(6, 17, 13, 0.88);
+    }
+
+    .light .code-snap pre {
+      background: rgba(255, 255, 255, 0.70);
+      border-color: rgba(6, 17, 13, 0.14);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+    }
+
+    .light .code-snap code {
+      color: rgba(6, 17, 13, 0.92);
+    }
   </style>
 </head>
 <body>
@@ -532,7 +634,7 @@
     <div class="card">
       <h2>Overview</h2>
       <p>
-        A fast-paced, arcade-style shooter inspired by Centipede Chaos, this space-themed game challenges players to destroy a segmented enemy known as the Voidcoil as it snakes down the screen while navigating around obstacles. Players earn points by eliminating enemies—including astronauts and asteroids—and destroying environmental hazards like planets and satellites. Across three progressively challenging levels, the ultimate goal is to fully eliminate the Voidcoil while maximizing score and survival.
+        A fast-paced, arcade-style shooter inspired by Centipede Chaos, this space-themed game challenges players to destroy a segmented enemy known as the Voidcoil as it snakes down the screen while navigating around obstacles. Players earn points by eliminating enemiesâ€”including astronauts and asteroidsâ€”and destroying environmental hazards like planets and satellites. Across three progressively challenging levels, the ultimate goal is to fully eliminate the Voidcoil while maximizing score and survival.
       </p>
     </div>
 
@@ -542,35 +644,35 @@
      <h3>Gameplay & Core Systems</h3>
       <ul>
         <li>Helped define core game direction inspired by classic and modern Centipede-style gameplay</li>
-        <li>Supported system expansion beyond core mechanics, including level transitions and additional features</li>
+        <li>Supported system expansion beyond core mechanics, including level transitions and additional features <a class="code-link" href="#code-vc-level-transition" data-code-target="code-vc-level-transition">Code</a></li>
         <li>Contributed to overall game polish, tuning, and feature completion</li>
       </ul>
     
       <h3>UI / UX</h3>
       <ul>
-        <li>Designed and implemented full menu suite (main menu, pause, settings, game over)</li>
-        <li>Developed functional UI interactions (start game, navigation, settings, exit)</li>
+        <li>Designed and implemented full menu suite (main menu, pause, settings, game over) <a class="code-link" href="#code-vc-ui-mainmenu" data-code-target="code-vc-ui-mainmenu">Code</a></li>
+        <li>Developed functional UI interactions (start game, navigation, settings, exit) <a class="code-link" href="#code-vc-ui-settings" data-code-target="code-vc-ui-settings">Code</a></li>
         <li>Built player HUD displaying score, high score, and lives with configurable layout</li>
-        <li>Implemented high score entry system with player initials</li>
+        <li>Implemented high score entry system with player initials <a class="code-link" href="#code-vc-ui-highscore-input" data-code-target="code-vc-ui-highscore-input">Code</a></li>
       </ul>
     
       <h3>Audio Systems</h3>
       <ul>
-        <li>Implemented background music and gameplay sound effects</li>
+        <li>Implemented background music and gameplay sound effects <a class="code-link" href="#code-vc-audio-play" data-code-target="code-vc-audio-play">Code</a></li>
         <li>Rebuilt audio system to ensure proper playback in release builds</li>
         <li>Designed centralized audio management via game manager with sound libraries</li>
       </ul>
     
       <h3>Input & Player Experience</h3>
       <ul>
-        <li>Added full controller support including vibration feedback</li>
+        <li>Added full controller support including vibration feedback <a class="code-link" href="#code-vc-input-vibration" data-code-target="code-vc-input-vibration">Code</a></li>
         <li>Implemented in-game control scheme menu for improved usability</li>
       </ul>
     
       <h3>Architecture & Systems Design</h3>
       <ul>
         <li>Modularized codebase into separate C++ files to reduce merge conflicts and improve scalability</li>
-        <li>Integrated UI framework (e.g., ImGui) into the engine for rapid UI development</li>
+        <li>Integrated UI framework (e.g., ImGui) into the engine for rapid UI development <a class="code-link" href="#code-vc-ui-input-toggle" data-code-target="code-vc-ui-input-toggle">Code</a></li>
         <li>Refactored audio system to use component-based architecture tied to game manager</li>
       </ul>
     
@@ -583,12 +685,391 @@
     
       <h3>Bug Fixing & Optimization</h3>
       <ul>
-        <li>Identified and resolved critical memory leak related to level loading/unloading</li>
+        <li>Identified and resolved critical memory leak related to level loading/unloading <a class="code-link" href="#code-vc-level-unload" data-code-target="code-vc-level-unload">Code</a></li>
         <li>Debugged and fixed release build audio playback issues</li>
         <li>Addressed edge cases and stability issues during polish phase</li>
         <li>Improved memory handling by correcting improper object lifecycle management</li>
       </ul>
       
+      <h3>Code Snapshots</h3>
+      <p style="margin-top:-0.25rem; color: var(--muted);">
+        Tip: click the <strong>Code</strong> chips above to jump straight to the snippet.
+      </p>
+      <div class="code-snapshots" aria-label="Code snapshots">
+        <details class="code-snap" id="code-vc-ui-mainmenu">
+          <summary>
+            <span>Main menu buttons (ImGui)</span>
+            <span class="snap-meta">C++ / Dear ImGui</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-vc-ui-mainmenu START -->
+    void MainMenu(entt::registry&amp; registry)
+    {
+        //Create background to cover game
+        ImVec2 displaySize;
+        CreateBlackBackground(registry, displaySize);
+
+        //Load window and button sizes
+        ImVec2 winSize = ImVec2((*config).at(&quot;MainMenu&quot;).at(&quot;winWidth&quot;).as&lt;float&gt;(), (*config).at(&quot;MainMenu&quot;).at(&quot;winHeight&quot;).as&lt;float&gt;());
+        ImVec2 buttonSize = ImVec2((*config).at(&quot;Buttons&quot;).at(&quot;buttonWidth&quot;).as&lt;float&gt;(), (*config).at(&quot;Buttons&quot;).at(&quot;buttonHeight&quot;).as&lt;float&gt;());
+        float buttonCenter = (winSize.x / 2.0f) - (buttonSize.x / 2.0f);
+
+        ImVec2 position = ImVec2(displaySize.x * 0.5 - (winSize.x * 0.5), displaySize.y * 0.5 - (winSize.y * 0.5)); // Top middle of screen
+        ImGui::SetNextWindowPos(position, ImGuiCond_Always);
+        ImGui::SetNextWindowSize(winSize);
+        ImGuiWindowFlags flags = ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBackground;
+
+        // Set contents of the window
+        ImGui::SetNextWindowFocus();    //Ensures that the menu is focused for controller input
+        ImGui::Begin(&quot;Main Menu&quot;, nullptr, flags);
+        ImGui::SetWindowFontScale((*config).at(&quot;MainMenu&quot;).at(&quot;titleFontScale&quot;).as&lt;float&gt;());    //Font size can only be scaled after Begin statement
+        std::string GameTitle = (*config).at(&quot;Game&quot;).at(&quot;title&quot;).as&lt;std::string&gt;();
+        ImGui::Text(&quot;   %s&quot;, GameTitle);
+        
+        ImGui::SetWindowFontScale((*config).at(&quot;Buttons&quot;).at(&quot;buttonFontScale&quot;).as&lt;float&gt;());
+        ImGui::NewLine();
+
+        //Indented in order to center buttons
+        ImGui::Indent(buttonCenter);
+        if (ImGui::Button(&quot;Play&quot;,buttonSize))
+        {
+            PlayButton(registry);
+        }
+        if (ImGui::Button(&quot;Settings&quot;, buttonSize))
+        {
+            SettingsButton(registry);
+        }
+        if (ImGui::Button(&quot;Controls&quot;, buttonSize))
+        {
+            ControlsButton(registry);
+        }
+        if (ImGui::Button(&quot;High Scores&quot;, buttonSize))
+        {
+            HighScoresButton(registry);
+        }
+        if (ImGui::Button(&quot;Exit Game&quot;, buttonSize))
+        {
+            ExitButton(registry);
+        }
+        ImGui::Unindent(buttonCenter);
+
+        ImGui::End();
+    }
+<!-- SNIP:code-vc-ui-mainmenu END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-vc-ui-settings">
+          <summary>
+            <span>Settings menu (volume + options)</span>
+            <span class="snap-meta">C++ / Dear ImGui</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-vc-ui-settings START -->
+    void SettingsMenu(entt::registry&amp; registry)
+    {
+        //Create background to cover game
+        ImVec2 displaySize;
+        CreateBlackBackground(registry, displaySize);
+
+        // Get window size and set display size
+        ImVec2 winSize = ImVec2((*config).at(&quot;SettingsMenu&quot;).at(&quot;winWidth&quot;).as&lt;float&gt;(), (*config).at(&quot;SettingsMenu&quot;).at(&quot;winHeight&quot;).as&lt;float&gt;());
+        ImVec2 buttonSize = ImVec2((*config).at(&quot;Buttons&quot;).at(&quot;buttonWidth&quot;).as&lt;float&gt;(), (*config).at(&quot;Buttons&quot;).at(&quot;buttonHeight&quot;).as&lt;float&gt;());
+        float buttonCenter = (winSize.x / 2.0f) - (buttonSize.x / 2.0f);
+
+        // Set position, size, and flags 
+        ImVec2 position = ImVec2(displaySize.x * 0.5 - (winSize.x * 0.5), displaySize.y * 0.5 - (winSize.y * 0.5)); // Top middle of screen
+        ImGui::SetNextWindowPos(position, ImGuiCond_Always);
+        ImGui::SetNextWindowSize(winSize);
+        ImGuiWindowFlags flags = ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBackground;
+
+
+        // Set contents of the window
+        ImGui::SetNextWindowFocus();    //Ensures that the menu is focused for controller input
+        ImGui::Begin(&quot;Settings&quot;, nullptr, flags);
+        ImGui::SetNextWindowBgAlpha(1.0f);
+        ImGui::SetWindowFontScale((*config).at(&quot;SettingsMenu&quot;).at(&quot;titleFontScale&quot;).as&lt;float&gt;());    //Font size can only be scaled after Begin statement
+        ImGui::Text(&quot;   SETTINGS&quot;);
+
+        //Create Sliders to control volume levels
+        ImGui::SetWindowFontScale((*config).at(&quot;SettingsMenu&quot;).at(&quot;sliderFontScale&quot;).as&lt;float&gt;());
+        int spacing = (*config).at(&quot;SettingsMenu&quot;).at(&quot;spacing&quot;).as&lt;int&gt;();
+        
+        CreateNewLines(spacing);
+        ImGui::SliderFloat(&quot;Master Volume&quot;, &amp;masterVol, 0.0f, 1.0f, &quot;% .1f&quot;);
+        ImGui::SliderFloat(&quot;Sound Effect Volume&quot;, &amp;soundVol, 0.0f, 1.0f, &quot;% .1f&quot;);
+        ImGui::SliderFloat(&quot;Music Volume&quot;, &amp;musicVol, 0.0f, 1.0f, &quot;% .1f&quot;);
+        auto&amp; view = registry.view&lt;GAME::ControllerVibration&gt;();
+        auto&amp; vibration = registry.get&lt;GAME::ControllerVibration&gt;(view[0]);
+        static int hudPos = topHUD, vibr = vibration.vibrate;
+        ImGui::Text(&quot;UI Position:          &quot;);
+        ImGui::SameLine();
+        ImGui::RadioButton(&quot;Top  &quot;, &amp;hudPos, 1);
+        ImGui::SameLine();
+        ImGui::RadioButton(&quot;Bottom&quot;, &amp;hudPos, 0);
+        
+        ImGui::Text(&quot;Controller vibration: &quot;);
+        ImGui::SameLine();
+        ImGui::RadioButton(&quot;On   &quot;, &amp;vibr, 1);
+        ImGui::SameLine();
+        ImGui::RadioButton(&quot;Off&quot;, &amp;vibr, 0);
+        CreateNewLines(spacing);
+
+        //Set volume to slider levels
+        GW::AUDIO::GAudio&amp; gAudio = registry.ctx().get&lt;GW::AUDIO::GAudio&gt;();
+        gAudio.SetMasterVolume(masterVol);
+        gAudio.SetGlobalSoundVolume(soundVol);
+        gAudio.SetGlobalMusicVolume(musicVol);
+
+        //Update HUD position variable
+        topHUD = hudPos;
+
+        //Update Controller vibration
+        vibration.vibrate = vibr;
+
+        //Indented in order to center buttons
+        ImGui::SetWindowFontScale((*config).at(&quot;Buttons&quot;).at(&quot;buttonFontScale&quot;).as&lt;float&gt;());
+        ImGui::Indent(buttonCenter);
+        
+        if (ImGui::Button(&quot;Back&quot;, buttonSize))
+        {
+            settingsOpen = false;
+        }
+        ImGui::Unindent(buttonCenter);
+        ImGui::End();
+    }
+<!-- SNIP:code-vc-ui-settings END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-vc-ui-highscore-input">
+          <summary>
+            <span>High score initials entry</span>
+            <span class="snap-meta">C++ / Dear ImGui</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-vc-ui-highscore-input START -->
+    void HighScoreInputScreen(entt::registry&amp; registry)
+    {
+        // Get window size and set display size
+        ImVec2 displaySize = ImGui::GetIO().DisplaySize;
+        ImVec2 winSize = ImVec2((*config).at(&quot;HighScoresInputMenu&quot;).at(&quot;winWidth&quot;).as&lt;float&gt;(), (*config).at(&quot;HighScoresInputMenu&quot;).at(&quot;winHeight&quot;).as&lt;float&gt;());
+        ImVec2 buttonSize = ImVec2((*config).at(&quot;Buttons&quot;).at(&quot;buttonWidth&quot;).as&lt;float&gt;(), (*config).at(&quot;Buttons&quot;).at(&quot;buttonHeight&quot;).as&lt;float&gt;());
+        float buttonCenter = (winSize.x / 2.0f) - (buttonSize.x / 2.0f);
+
+        // Set position, size, and flags 
+        ImVec2 position = ImVec2(displaySize.x * 0.5 - (winSize.x * 0.5), displaySize.y * 0.5 - (winSize.y * 0.5)); // Top middle of screen
+        ImGui::SetNextWindowPos(position, ImGuiCond_Always);
+        ImGui::SetNextWindowSize(winSize);
+        ImGuiWindowFlags flags = ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar;
+
+
+        // Set contents of the window
+        ImGui::Begin(&quot;New High Score&quot;, nullptr, flags);
+        ImGui::SetWindowFontScale((*config).at(&quot;HighScoresInputMenu&quot;).at(&quot;titleFontScale&quot;).as&lt;float&gt;());    //Font size can only be scaled after Begin statement
+        ImGui::Text(&quot;NEW HIGH SCORE!&quot;, (*config).at(&quot;HighScores&quot;).at(&quot;numHighScores&quot;).as&lt;int&gt;());
+
+        //Prompt the user for their name
+        ImGui::Indent(buttonCenter);
+        ImGui::SetWindowFontScale((*config).at(&quot;HighScoresInputMenu&quot;).at(&quot;scoresFontScale&quot;).as&lt;float&gt;());
+        ImGui::NewLine();
+        ImGui::Text(&quot;Enter Your Initials:&quot;);
+        static char name[6] = &quot;&quot;;
+        ImGui::InputText(&quot; &quot;, name, IM_ARRAYSIZE(name));
+        ImGui::NewLine();
+
+        // Display Buttons
+        
+        ImGui::SetWindowFontScale((*config).at(&quot;Buttons&quot;).at(&quot;buttonFontScale&quot;).as&lt;float&gt;());
+        if (ImGui::Button(&quot;Submit&quot;, buttonSize))
+        {
+            std::string saveName = name;
+            std::cout &lt;&lt; saveName;
+            UTIL::SaveScore(registry, saveName, UTIL::GetCurrentScore(registry));
+            newHighScore = false;
+            scoreSaved = true;
+        }
+        ImGui::Unindent(buttonCenter);
+        ImGui::End();
+    }
+<!-- SNIP:code-vc-ui-highscore-input END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-vc-audio-play">
+          <summary>
+            <span>Centralized audio (SFX + music)</span>
+            <span class="snap-meta">C++ / Gateware Audio</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-vc-audio-play START -->
+	void PlaySoundEffect(entt::registry&amp; registry, std::string iniName)
+	{
+		//Get the sound effects component
+		auto view = registry.view&lt;GAME::SoundEffects&gt;();
+		auto&amp; sfx = registry.get&lt;GAME::SoundEffects&gt;(view[0]).effects;
+
+		//Check if the current effect has already been created - if not create it
+		if (sfx.find(iniName) == sfx.end())
+		{
+			auto&amp; config = registry.ctx().get&lt;UTIL::Config&gt;().gameConfig;
+			GW::AUDIO::GAudio&amp; gAudio = registry.ctx().get&lt;GW::AUDIO::GAudio&gt;();
+			sfx.emplace(iniName, GW::AUDIO::GSound());
+			sfx[iniName].Create((*config).at(iniName).at(&quot;soundPath&quot;).as&lt;std::string&gt;().c_str(), gAudio);
+		}
+
+		//Play sound
+		auto iter = sfx.find(iniName);
+		iter-&gt;second.Play();
+	}
+
+	void PlayMusic(entt::registry&amp; registry, std::string iniName)
+	{
+		auto view = registry.view&lt;GAME::BackgroundMusic&gt;();
+		auto&amp; musicTracks = registry.get&lt;GAME::BackgroundMusic&gt;(view[0]).musicTracks;
+		bool playing;
+
+		//Check if the current track exists first - if not add it 
+		if (musicTracks.find(iniName) == musicTracks.end())
+		{
+			auto&amp; config = registry.ctx().get&lt;UTIL::Config&gt;().gameConfig;
+			GW::AUDIO::GAudio&amp; gAudio = registry.ctx().get&lt;GW::AUDIO::GAudio&gt;();
+			musicTracks.emplace(iniName, GW::AUDIO::GMusic());
+			musicTracks[iniName].Create((*config).at(iniName).at(&quot;musicPath&quot;).as&lt;std::string&gt;().c_str(), gAudio);
+		}
+
+		//Loop through each track and stop the tracks not for current level
+		for (auto track : musicTracks)
+		{
+			track.second.isPlaying(playing);
+
+			if (track.first == iniName)
+			{
+				if (!playing)
+					track.second.Play(true);
+			}
+			else if (playing)
+			{
+				track.second.Stop();
+			}
+		}
+	}
+<!-- SNIP:code-vc-audio-play END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-vc-input-vibration">
+          <summary>
+            <span>Controller vibration</span>
+            <span class="snap-meta">C++ / Gamepad</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-vc-input-vibration START -->
+	void VibrateController(entt::registry&amp; registry)
+	{
+		auto&amp; input = registry.ctx().get&lt;UTIL::Input&gt;();
+		bool connected = false;
+		input.gamePads.IsConnected(0, connected);
+		if (connected)
+		{
+			auto&amp; view = registry.view&lt;GAME::ControllerVibration&gt;();
+			auto vibration = registry.get&lt;GAME::ControllerVibration&gt;(view[0]);
+			if (vibration.vibrate)
+			{
+				input.gamePads.StartVibration(0, 0, vibration.duration, vibration.strength);
+			}
+		}
+	}
+<!-- SNIP:code-vc-input-vibration END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-vc-ui-input-toggle">
+          <summary>
+            <span>Pause/menu toggle input (ESC / Start)</span>
+            <span class="snap-meta">C++ / Input</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-vc-ui-input-toggle START -->
+        if ((inputState[0] &gt; 0.0f || inputState[1] &gt; 0.0f) &amp;&amp; inputDelay &lt;= 0.0f)
+        {
+            if (settingsOpen)
+            {
+                settingsOpen = false;
+            }
+
+            if (highScoreOpen)
+            {
+                highScoreOpen = false;
+            }
+
+            if (controlsOpen)
+            {
+                controlsOpen = false;
+            }
+
+            else if (startGame)
+            {
+                pauseMenu = !pauseMenu;
+                inputDelay = 0.5f;
+            }
+        }
+<!-- SNIP:code-vc-ui-input-toggle END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-vc-level-transition">
+          <summary>
+            <span>Level transition when enemies cleared</span>
+            <span class="snap-meta">C++ / Game loop</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-vc-level-transition START -->
+		if (registry.view&lt;Enemy&gt;().empty())
+		{
+			//Check current level
+			auto trackerView = registry.view&lt;GAME::LevelTracker&gt;();
+			auto&amp; currentLevel = registry.get&lt;GAME::LevelTracker&gt;(trackerView[0]).currentLevel;
+
+			if (currentLevel == 3)
+			{
+				registry.emplace&lt;GameOver&gt;(entity);
+				registry.emplace&lt;GameWin&gt;(entity);
+			}
+			else
+			{
+				currentLevel++;
+				UTIL::LoadLevel(registry, currentLevel);
+			}
+		}
+<!-- SNIP:code-vc-level-transition END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-vc-level-unload">
+          <summary>
+            <span>Level unload (clear CPU-side level data)</span>
+            <span class="snap-meta">C++ / Memory</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-vc-level-unload START -->
+	void UnloadLevel() {
+		level_strings.clear();
+		levelVertices.clear();
+		levelIndices.clear();
+		levelMaterials.clear();
+		levelTextures.clear();
+		levelBatches.clear();
+		levelMeshes.clear();
+		levelModels.clear();
+		levelTransforms.clear();
+		levelInstances.clear();
+		blenderObjects.clear();
+	}
+<!-- SNIP:code-vc-level-unload END --></code></pre>
+          </div>
+        </details>
+      </div>
     </div>
 
     <div class="card">
@@ -618,7 +1099,7 @@
 
   <footer style="text-align:center; padding:2rem; background: rgba(0, 0, 0, 0.78); border-top: 1px solid rgba(148, 163, 184, 0.18); position: relative;">
     <div aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:8px; background: repeating-linear-gradient(135deg, var(--accent2) 0 14px, rgba(0,0,0,0) 14px 24px); opacity:0.7; pointer-events:none;"></div>
-    <p>© 2026 Michael Gray</p>
+    <p>Â© 2026 Michael Gray</p>
   </footer>
 
   <script>
@@ -718,6 +1199,54 @@
       // === INIT ===
       updateCarousel();
       startAutoplay();
+
+      // Code snapshot helpers
+      function openCodeSnapshotById(id) {
+        if (!id) return;
+        const snap = document.getElementById(id);
+        if (!snap || snap.tagName !== 'DETAILS') return;
+        snap.open = true;
+        snap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      document.querySelectorAll('a.code-link[data-code-target]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const id = a.getAttribute('data-code-target');
+          openCodeSnapshotById(id);
+          history.replaceState(null, '', `#${id}`);
+        });
+      });
+
+      if (location.hash && location.hash.startsWith('#code-')) {
+        const id = location.hash.slice(1);
+        setTimeout(() => openCodeSnapshotById(id), 0);
+      }
+
+      // Remove leading indentation from code snapshots (keeps relative indentation)
+      document.querySelectorAll('.code-snap pre code').forEach((codeEl) => {
+        const raw = codeEl.textContent ?? '';
+        const lines = raw.replace(/\r\n/g, '\n').split('\n');
+
+        while (lines.length && lines[0].trim() === '') lines.shift();
+        while (lines.length && lines[lines.length - 1].trim() === '') lines.pop();
+
+        let minIndent = Infinity;
+        for (const line of lines) {
+          if (line.trim() === '') continue;
+          const match = line.match(/^[ \t]+/);
+          const indent = match ? match[0].length : 0;
+          if (indent < minIndent) minIndent = indent;
+          if (minIndent === 0) break;
+        }
+
+        const dedented =
+          minIndent === Infinity
+            ? lines.join('\n')
+            : lines.map((l) => (l.trim() === '' ? '' : l.slice(minIndent))).join('\n');
+
+        codeEl.textContent = dedented;
+      });
     </script>
 
 </body>

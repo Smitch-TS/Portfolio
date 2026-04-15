@@ -438,6 +438,108 @@
       color-scheme: light;
     }
 
+    /* === Code snapshots (collapsible) === */
+    .code-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-left: 0.45rem;
+      padding: 0.1rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(167, 243, 208, 0.18);
+      background: rgba(6, 17, 13, 0.35);
+      color: rgba(236, 253, 245, 0.88);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      white-space: nowrap;
+      vertical-align: baseline;
+    }
+
+    .code-link:hover {
+      border-color: rgba(45, 212, 191, 0.34);
+      background: rgba(45, 212, 191, 0.10);
+      transform: translateY(-1px);
+    }
+
+    .code-snapshots {
+      margin-top: 1.25rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    details.code-snap {
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(6, 17, 13, 0.22);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    details.code-snap[open] {
+      background: rgba(6, 17, 13, 0.30);
+      border-color: rgba(45, 212, 191, 0.22);
+    }
+
+    details.code-snap > summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 0.7rem 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-weight: 800;
+      color: rgba(236, 253, 245, 0.92);
+      user-select: none;
+    }
+
+    details.code-snap > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.code-snap > summary .snap-meta {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .code-snap .snap-body {
+      padding: 0 0.9rem 0.9rem;
+    }
+
+    .code-snap pre {
+      margin: 0;
+      padding: 0.85rem;
+      border-radius: 12px;
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(0, 0, 0, 0.28);
+      overflow: auto;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+    }
+
+    .code-snap code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.92rem;
+      color: rgba(236, 253, 245, 0.92);
+    }
+
+    .light .code-link {
+      border-color: rgba(6, 17, 13, 0.18);
+      background: rgba(255, 255, 255, 0.65);
+      color: rgba(6, 17, 13, 0.88);
+    }
+
+    .light .code-snap pre {
+      background: rgba(255, 255, 255, 0.70);
+      border-color: rgba(6, 17, 13, 0.14);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+    }
+
+    .light .code-snap code {
+      color: rgba(6, 17, 13, 0.92);
+    }
+
   </style>
 </head>
 <body>
@@ -497,9 +599,9 @@
       <h2>What I Worked On</h2>
       <h3>Gameplay Systems</h3>
       <ul>
-        <li>Built components surrounding core gameplay loop including potion brewing, request handling, scoring, and round timers</li>
-        <li>Designed potion recipe system using structs and data tables for scalable ingredient management</li>
-        <li>Implemented request lifecycle (generation, timers, validation, and completion logic)</li>
+        <li>Built components surrounding core gameplay loop including potion brewing, request handling, scoring, and round timers <a class="code-link" href="#code-core-loop" data-code-target="code-core-loop">Code</a></li>
+        <li>Designed potion recipe system using structs and data tables for scalable ingredient management <a class="code-link" href="#code-recipes" data-code-target="code-recipes">Code</a></li>
+        <li>Implemented request lifecycle (generation, timers, validation, and completion logic) <a class="code-link" href="#code-requests" data-code-target="code-requests">Code</a></li>
         <li>Added progression systems including level data, difficulty scaling, and ingredient variations</li>
         <li>Developed GameMode, GameState, and PlayerState systems to control game flow</li>
         <li>Introduced currency rewards, high score tracking, and end-of-round ranking</li>
@@ -508,8 +610,8 @@
       <h3>UI / UX</h3>
       <ul>
         <li>Designed and implemented main menu, HUD, pause menu, and end-of-round screens</li>
-        <li>Built dynamic UI for request tracking, timers, score display, and ingredient feedback</li>
-        <li>Added settings menus (graphics, audio) with persistent user preferences</li>
+        <li>Built dynamic UI for request tracking, timers, score display, and ingredient feedback <a class="code-link" href="#code-ui-request-popup" data-code-target="code-ui-request-popup">Code</a></li>
+        <li>Added settings menus (graphics, audio) with persistent user preferences <a class="code-link" href="#code-ui-settings" data-code-target="code-ui-settings">Code</a></li>
         <li>Created save/load UI with multiple slots, deletion, and confirmation flows</li>
         <li>Improved UI performance and stability by reducing redundant updates</li>
         <li>Enhanced UX with visual feedback, icons, and layout refinements</li>
@@ -528,24 +630,465 @@
       <ul>
         <li>Established scalable project structure and core C++ systems in Unreal Engine</li>
         <li>Developed reusable systems for UI, gameplay logic, and data handling</li>
-        <li>Transitioned hardcoded logic to data-driven systems using data tables</li>
+        <li>Transitioned hardcoded logic to data-driven systems using data tables <a class="code-link" href="#code-arch-load-requests" data-code-target="code-arch-load-requests">Code</a></li>
         <li>Improved maintainability by consolidating systems and reducing duplication</li>
         <li>Implemented enums and structured state handling for cleaner flow control</li>
       </ul>
 
       <h3>Persistence & Progression</h3>
       <ul>
-        <li>Built save game system with multiple slots and persistent data</li>
-        <li>Implemented level select and progression tied to save data</li>
+        <li>Built save game system with multiple slots and persistent data <a class="code-link" href="#code-persist-slot" data-code-target="code-persist-slot">Code</a></li>
+        <li>Implemented level select and progression tied to save data <a class="code-link" href="#code-persist-progress" data-code-target="code-persist-progress">Code</a></li>
         <li>Ensured proper loading of user settings and game state across sessions</li>
       </ul>
 
       <h3>Tools, Debugging & Optimization</h3>
       <ul>
-        <li>Created debugging tools and cheat systems for testing</li>
+        <li>Created debugging tools and cheat systems for testing <a class="code-link" href="#code-tools-cheats" data-code-target="code-tools-cheats">Code</a></li>
         <li>Resolved crashes, memory issues, and edge cases</li>
         <li>Tuned gameplay values for balance and playtesting</li>
       </ul>
+
+      <h3>Code Snapshots</h3>
+      <p style="margin-top:-0.25rem; color: var(--muted);">
+        Tip: click the <strong>Code</strong> chips above to jump straight to the snippet.
+      </p>
+      <div class="code-snapshots" aria-label="Code snapshots">
+        <details class="code-snap" id="code-core-loop">
+          <summary>
+            <span>Round Timers (non-tick based) </span>
+            <span class="snap-meta">C++ / Unreal</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-core-loop START -->
+void APlayingGameState::StartRoundTimer(float RoundLength)
+{
+	if (!HasAuthority())
+		return;
+
+	
+	RoundTimeRemaining = RoundLength;
+	OnRep_RoundTimeRemaining();
+	CurrentScore = 0;
+	OnRep_CurrentScore();
+	GetWorldTimerManager().SetTimer(RoundTimerHandle, this, &amp;APlayingGameState::UpdateTimers, 1.0f,	true);
+	GetWorldTimerManager().SetTimer(RequestTimerHandle, this, &amp;APlayingGameState::GenerateNewRequest, RequestGenerationFrequency,	true);
+	SetCurrentGamePhase(EGamePhase::InProgress);
+
+	// Generate the first request immediately so that players have a request to start with
+	FTimerHandle InitHandle;
+	GetWorldTimerManager().SetTimer(InitHandle, this, &amp;APlayingGameState::GenerateNewRequest, 0.1f, false);
+}
+
+void APlayingGameState::UpdateTimers()
+{
+	if (!HasAuthority())
+		return;
+
+	// Handle Round Timer Countdown
+	if (RoundTimeRemaining &gt; 0)
+	{
+		RoundTimeRemaining -= 1.0f;
+		OnRep_RoundTimeRemaining();
+	}
+	else
+	{
+		GetWorldTimerManager().ClearTimer(RoundTimerHandle);
+		UE_LOG(PlayingGameState, Display, TEXT(&quot;Round Ended! Final Score: %d&quot;), CurrentScore);
+		SetCurrentGamePhase(EGamePhase::RoundEnd);
+	}
+
+	//Handle Request Timer Countdown - iterate backwards through the array to prevent references to removed elements
+	if (CurrentRequests.Num() != 0)
+	{
+		for (int32 i = CurrentRequests.Num() - 1; i &gt;= 0; --i)
+		{
+			CurrentRequests[i].RemainingRequestTime -= 1.0f;
+
+			if (CurrentRequests[i].RemainingRequestTime &lt;= 0)
+			{
+				CurrentRequests.RemoveAt(i);
+				CurrentScore -= ScorePenaltyForExpiredRequest;
+				UE_LOG(PlayingGameState, Display, TEXT(&quot;A request has expired!&quot;));
+			}
+		}
+		OnRep_CurrentRequests();
+		OnRep_CurrentScore();
+	}
+}
+<!-- SNIP:code-core-loop END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-recipes">
+          <summary>
+            <span>Recipe data + structs </span>
+            <span class="snap-meta">C++ / DataTables</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-recipes START -->
+struct FPotionRecipe : public FTableRowBase
+{
+	GENERATED_BODY()
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString PotionName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMesh* PotionMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector PotionMeshScale = FVector(1.0f, 1.0f, 1.0f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray&lt;FDataTableRowHandle&gt; PotionIngredients;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EPotionState PotionState = EPotionState::NotStarted;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int PotionLevel;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CurrencyReward;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float RequestTimer;
+
+	UPROPERTY(BlueprintReadWrite)
+	float RemainingRequestTime;
+
+	bool operator==(const FPotionRecipe&amp; Other) const
+	{
+		return PotionName == Other.PotionName;
+	}
+};
+<!-- SNIP:code-recipes END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-requests">
+          <summary>
+            <span>Generate Requests</span>
+            <span class="snap-meta">C++ / Networking</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-requests START -->
+void APlayingGameState::GenerateNewRequest()
+{
+	if (!HasAuthority())
+		return;
+
+	// Check if requests are 0 to prevent crashes
+	if (PossibleRequests.Num() == 0)
+	{
+		UE_LOG(PlayingGameState, Warning, TEXT(&quot;No possible requests available!&quot;));
+		return;
+	}
+
+	// Check if we have room for more requests
+	if (CurrentRequests.Num() &lt; MaxRequests)
+	{
+		int NewRequestIndex = FMath::RandRange(0, PossibleRequests.Num() - 1);
+		FPotionRecipe NewRequest = PossibleRequests[NewRequestIndex];
+		NewRequest.RemainingRequestTime = NewRequest.RequestTimer;
+		CurrentRequests.Add(NewRequest);
+		OnRep_CurrentRequests();
+	}
+	else
+	{
+		UE_LOG(PlayingGameState, Display, TEXT(&quot;Request Generation Skipped - Max Number of Requests Reached!&quot;));
+	}
+}
+<!-- SNIP:code-requests END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-ui-request-popup">
+          <summary>
+            <span>Request popup timer + ingredient icons</span>
+            <span class="snap-meta">C++ / UMG</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-ui-request-popup START -->
+void URequestPopup::UpdateRequest(FPotionRecipe recipe)
+{
+		int IngredientCount = recipe.PotionIngredients.Num();
+
+		// Update the potion name
+		PotionNameText-&gt;SetText(FText::FromString(recipe.PotionName));
+
+		// Update the request timer
+		float Ratio = recipe.RemainingRequestTime / recipe.RequestTimer;
+		RequestTimer-&gt;SetPercent(Ratio);
+		
+		if (Ratio &gt; 0.66f)
+		{
+			RequestTimer-&gt;SetFillColorAndOpacity(FLinearColor::Green);
+		}
+		else if (Ratio &gt; 0.33f)
+		{
+			RequestTimer-&gt;SetFillColorAndOpacity(FLinearColor::Yellow);
+		}
+		else
+		{
+			RequestTimer-&gt;SetFillColorAndOpacity(FLinearColor::Red);
+		}
+
+		// Update the request ingredients
+		for (int index = 0; index &lt; IngredientIcons.Num(); index++)
+		{
+			// If there is an ingredient for the slot load the icon and update the icon
+			if (index &lt; IngredientCount)
+			{
+				FPotionIngredient* Ingredient = recipe.PotionIngredients[index].GetRow&lt;FPotionIngredient&gt;(TEXT(&quot;Ingredient Lookup&quot;));
+				if (Ingredient)
+				{
+					UTexture2D* IconImage2D = Ingredient-&gt;IngredientIcon;
+					IngredientIcons[index]-&gt;SetBrushFromTexture(IconImage2D);
+					IngredientIcons[index]-&gt;SetVisibility(ESlateVisibility::Visible);
+
+					// If the ingredient has a modifier, load the modifier icon and update the icon
+					if (Ingredient-&gt;IngredientState == EIngredientState::Dried)
+					{
+						ModifierIcons[index]-&gt;SetBrushFromTexture(DriedIcon);
+						ModifierIcons[index]-&gt;SetVisibility(ESlateVisibility::Visible);
+						ModifierBackgroundIcons[index]-&gt;SetVisibility(ESlateVisibility::Visible);
+					}
+					else if (Ingredient-&gt;IngredientState == EIngredientState::Ground)
+					{
+						ModifierIcons[index]-&gt;SetBrushFromTexture(GroundIcon);
+						ModifierIcons[index]-&gt;SetVisibility(ESlateVisibility::Visible);
+						ModifierBackgroundIcons[index]-&gt;SetVisibility(ESlateVisibility::Visible);
+					}
+					else
+					{
+						ModifierIcons[index]-&gt;SetVisibility(ESlateVisibility::Hidden);
+						ModifierBackgroundIcons[index]-&gt;SetVisibility(ESlateVisibility::Hidden);
+					}
+				}
+			}
+			// Hide the image if there is not an ingredient to fill the slot
+			else
+			{
+				IngredientIcons[index]-&gt;SetVisibility(ESlateVisibility::Hidden);
+				ModifierIcons[index]-&gt;SetVisibility(ESlateVisibility::Hidden);
+				ModifierBackgroundIcons[index]-&gt;SetVisibility(ESlateVisibility::Hidden);
+			}
+		}
+}
+<!-- SNIP:code-ui-request-popup END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-ui-settings">
+          <summary>
+            <span>Apply saved settings (audio + quality)</span>
+            <span class="snap-meta">C++ / Settings</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-ui-settings START -->
+void UMyGameInstance::LoadSettingsSaveData()
+{
+
+	// Set the quality settings
+	UGameUserSettings* Settings = GEngine-&gt;GetGameUserSettings();
+	Settings-&gt;SetOverallScalabilityLevel(SettingsSave-&gt;QualitySettingIndex);
+
+	if (!CM_User || !CB_Music) return;
+
+	// Activate the mix and set the bus values
+	UAudioModulationStatics::ActivateBusMix(this, CM_User);
+	UAudioModulationStatics::SetGlobalBusMixValue(this,	CB_Music, SettingsSave-&gt;MusicVolume);
+	UAudioModulationStatics::SetGlobalBusMixValue(this,	CB_SFX, SettingsSave-&gt;SFXVolume);
+}
+<!-- SNIP:code-ui-settings END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-arch-load-requests">
+          <summary>
+            <span>Data-driven requests (DataTable load)</span>
+            <span class="snap-meta">C++ / DataTables</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-arch-load-requests START -->
+void APlayingGameState::LoadPossibleRequests()
+{
+	// Check if the potion recipes table and game instance are valid
+	if (PotionRecipesTable)
+	{
+		int CurLevel = instance-&gt;GetCurrentLevelIndex();
+
+		TArray&lt;FPotionRecipe*&gt; AllRecipes;
+		PotionRecipesTable-&gt;GetAllRows&lt;FPotionRecipe&gt;(TEXT(&quot;&quot;), AllRecipes);
+
+		// For each recipe , if the potion level is less than or equal to the current level, add it to the possible requests array
+		for (FPotionRecipe* Recipe : AllRecipes)
+		{
+			if (Recipe-&gt;PotionLevel &lt;= CurLevel)
+			{
+				FPotionRecipe RecipeCopy = *Recipe;
+				PossibleRequests.AddUnique(RecipeCopy);
+				UE_LOG(PlayingGameState, Display, TEXT(&quot;Added %s to possible requests!&quot;), *Recipe-&gt;PotionName);
+			}
+		}
+	}
+	else
+	{
+		UE_LOG(PlayingGameState, Warning, TEXT(&quot;PotionRecipesTable is not set!&quot;));
+	}
+}
+<!-- SNIP:code-arch-load-requests END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-persist-slot">
+          <summary>
+            <span>Save slot switching</span>
+            <span class="snap-meta">C++ / SaveGame</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-persist-slot START -->
+void UMyGameInstance::ChangeCurrentSaveSlot(int SlotIndex)
+{
+	// Set the current save slot index and load the saved game data from the new save slot
+	CurrentSaveSlotIndex = SlotIndex;
+	SlotName = SlotPrefix + FString::FromInt(CurrentSaveSlotIndex);
+	SaveGame = Cast&lt;UProgressSaveGame&gt;(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+
+	if (!SaveGame)
+	{
+		SaveGame = Cast&lt;UProgressSaveGame&gt;(UGameplayStatics::CreateSaveGameObject(UProgressSaveGame::StaticClass()));
+		SaveGame-&gt;HighestLevelAchieved = 1;
+		SaveGame-&gt;LevelHighScores.Add(0);
+		SaveGame-&gt;RankAchieved.Add(0);
+	}
+
+	SettingsSave-&gt;SaveSlotIndex = CurrentSaveSlotIndex;
+	SaveSettings();
+}
+<!-- SNIP:code-persist-slot END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-persist-progress">
+          <summary>
+            <span>Save Game Data on Progression</span>
+            <span class="snap-meta">C++ / SaveGame</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-persist-progress START -->
+void UMyGameInstance::UpdateSavedGameData(int CurrentLevel, int Score, int Rank)
+{
+	bool changeMade = false;
+
+	if (SaveGame)
+	{
+		// If player reached at least rank 1 and the highest level is the current one advance it one
+		// Also added failsafe check for number of levels to restrict
+		if (CurrentLevel &gt;= SaveGame-&gt;HighestLevelAchieved &amp;&amp; Rank &gt; 0 &amp;&amp; CurrentLevel &lt; Levels.Num() - 2)	// -2 to account for the tutorial level and 0 indexing
+		{
+			SaveGame-&gt;HighestLevelAchieved = CurrentLevel + 1;
+			changeMade = true;
+		}
+
+		//Check the score for the current level against the high score for that level and update if the current score is higher
+		if (SaveGame-&gt;LevelHighScores.Num() &gt;= CurrentLevel)
+		{
+			if (SaveGame-&gt;LevelHighScores[CurrentLevel - 1] &lt; Score)
+			{
+				SaveGame-&gt;LevelHighScores[CurrentLevel - 1] = Score;
+				changeMade = true;
+			}
+		}
+		else
+		{
+			// If there is no high score for the current level, add the current score as the high score for that level
+			SaveGame-&gt;LevelHighScores.Add(Score);
+			changeMade = true;
+		}
+
+		if (SaveGame-&gt;RankAchieved.Num() &gt;= CurrentLevel)
+		{
+			if (SaveGame-&gt;RankAchieved[CurrentLevel - 1] &lt; Rank)
+			{
+				SaveGame-&gt;RankAchieved[CurrentLevel - 1] = Rank;
+				changeMade = true;
+			}
+		}
+		else
+		{
+			// If there is no rank for the current level, add the current rank as the rank achieved for that level
+			SaveGame-&gt;RankAchieved.Add(Rank);
+			changeMade = true;
+		}
+
+		// Only want to save the game if any changes were made to the save game data to avoid unnecessary disk writes
+		if (changeMade)
+		{
+			// Save the updated save game data back to the save slot
+			SlotName = SlotPrefix + FString::FromInt(CurrentSaveSlotIndex);
+			UGameplayStatics::AsyncSaveGameToSlot(SaveGame, SlotName, 0);
+		}
+	}
+}
+<!-- SNIP:code-persist-progress END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-tools-cheats">
+          <summary>
+            <span>Cheat commands (pause timers / add score)</span>
+            <span class="snap-meta">C++ / Debug</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-tools-cheats START -->
+void APlayingGameState::CheatAddScore(int Amount, UCheatManager* CallingClass)
+{
+	//Always confirm command is being called with a Cheat Manager
+	if (CallingClass)
+	{
+		CurrentScore += Amount;
+		OnRep_CurrentScore();
+		UE_LOG(PlayingGameState, Warning, TEXT(&quot;CheatAddScore called! Current Score: %d&quot;), CurrentScore);
+	}
+	else
+	{
+		UE_LOG(PlayingGameState, Warning, TEXT(&quot;CheatAddScore called with null Cheat Manager!&quot;));
+	}
+}
+
+void APlayingGameState::CheatPauseTimer(UCheatManager* CallingClass)
+{
+	//Always confirm command is being called with a Cheat Manager
+	if (CallingClass)
+	{
+		if (isRoundTimerPaused)
+		{
+			// Unpause the update timer and set the time remaining back to what it was at the point of toggle
+			GetWorld()-&gt;GetTimerManager().UnPauseTimer(RoundTimerHandle);
+			isRoundTimerPaused = false;
+		}
+		else
+		{
+			//Pause the update timer, save the time remaining at the point of toggle, and set the time remaining to a very high value to effectively make it infinite
+			GetWorld()-&gt;GetTimerManager().PauseTimer(RoundTimerHandle);
+			isRoundTimerPaused = true;
+		}
+	}
+	else
+	{
+		UE_LOG(PlayingGameState, Warning, TEXT(&quot;CheatAddScore called with null Cheat Manager!&quot;));
+	}
+
+	
+}
+<!-- SNIP:code-tools-cheats END --></code></pre>
+          </div>
+        </details>
+      </div>
     </div>
 
     <div class="card">
@@ -656,6 +1199,56 @@
       updateCarousel();
       startAutoplay();
     }
+
+    // Code snapshot helpers
+    function openCodeSnapshotById(id) {
+      if (!id) return;
+      const snap = document.getElementById(id);
+      if (!snap || snap.tagName !== 'DETAILS') return;
+      snap.open = true;
+      snap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    document.querySelectorAll('a.code-link[data-code-target]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = a.getAttribute('data-code-target');
+        openCodeSnapshotById(id);
+        history.replaceState(null, '', `#${id}`);
+      });
+    });
+
+    if (location.hash && location.hash.startsWith('#code-')) {
+      const id = location.hash.slice(1);
+      // Allow layout to settle before scrolling.
+      setTimeout(() => openCodeSnapshotById(id), 0);
+    }
+
+    // Remove leading indentation from code snapshots (keeps relative indentation)
+    document.querySelectorAll('.code-snap pre code').forEach((codeEl) => {
+      const raw = codeEl.textContent ?? '';
+      const lines = raw.replace(/\r\n/g, '\n').split('\n');
+
+      // Trim leading/trailing completely blank lines
+      while (lines.length && lines[0].trim() === '') lines.shift();
+      while (lines.length && lines[lines.length - 1].trim() === '') lines.pop();
+
+      let minIndent = Infinity;
+      for (const line of lines) {
+        if (line.trim() === '') continue;
+        const match = line.match(/^[ \t]+/);
+        const indent = match ? match[0].length : 0;
+        if (indent < minIndent) minIndent = indent;
+        if (minIndent === 0) break;
+      }
+
+      const dedented =
+        minIndent === Infinity
+          ? lines.join('\n')
+          : lines.map((l) => (l.trim() === '' ? '' : l.slice(minIndent))).join('\n');
+
+      codeEl.textContent = dedented;
+    });
   </script>
 
 </body>

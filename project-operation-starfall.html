@@ -177,7 +177,7 @@
     }
 
     /* =========================================================
-       Nature × Technology Overhaul (overrides above styles)
+       Nature ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Technology Overhaul (overrides above styles)
        ========================================================= */
     :root {
       --bg: #06110d;
@@ -431,6 +431,108 @@
       color-scheme: light;
     }
 
+    /* === Code snapshots (collapsible) === */
+    .code-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-left: 0.45rem;
+      padding: 0.1rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(167, 243, 208, 0.18);
+      background: rgba(6, 17, 13, 0.35);
+      color: rgba(236, 253, 245, 0.88);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      white-space: nowrap;
+      vertical-align: baseline;
+    }
+
+    .code-link:hover {
+      border-color: rgba(45, 212, 191, 0.34);
+      background: rgba(45, 212, 191, 0.10);
+      transform: translateY(-1px);
+    }
+
+    .code-snapshots {
+      margin-top: 1.25rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    details.code-snap {
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(6, 17, 13, 0.22);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    details.code-snap[open] {
+      background: rgba(6, 17, 13, 0.30);
+      border-color: rgba(45, 212, 191, 0.22);
+    }
+
+    details.code-snap > summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 0.7rem 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-weight: 800;
+      color: rgba(236, 253, 245, 0.92);
+      user-select: none;
+    }
+
+    details.code-snap > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.code-snap > summary .snap-meta {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .code-snap .snap-body {
+      padding: 0 0.9rem 0.9rem;
+    }
+
+    .code-snap pre {
+      margin: 0;
+      padding: 0.85rem;
+      border-radius: 12px;
+      border: 1px solid rgba(167, 243, 208, 0.14);
+      background: rgba(0, 0, 0, 0.28);
+      overflow: auto;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+    }
+
+    .code-snap code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.92rem;
+      color: rgba(236, 253, 245, 0.92);
+    }
+
+    .light .code-link {
+      border-color: rgba(6, 17, 13, 0.18);
+      background: rgba(255, 255, 255, 0.65);
+      color: rgba(6, 17, 13, 0.88);
+    }
+
+    .light .code-snap pre {
+      background: rgba(255, 255, 255, 0.70);
+      border-color: rgba(6, 17, 13, 0.14);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+    }
+
+    .light .code-snap code {
+      color: rgba(6, 17, 13, 0.92);
+    }
+
   </style>
 </head>
 <body>
@@ -479,7 +581,7 @@
     <div class="card">
       <h2>Overview</h2>
       <p>
-        Operation Starfall is a first-person shooter set in an orbital space station where players must defend against an invading force bent on sabotaging the station’s systems. Using a complex movement system, futuristic weaponry, and multi-objective gameplay, players must fight off waves of enemies, uncover hidden objects, and fight their way to the control room to stop the invaders. 
+        Operation Starfall is a first-person shooter set in an orbital space station where players must defend against an invading force bent on sabotaging the station's systems. Using a complex movement system, futuristic weaponry, and multi-objective gameplay, players must fight off waves of enemies, uncover hidden objects, and fight their way to the control room to stop the invaders. 
       </p>
     </div>
 
@@ -495,9 +597,10 @@
 
       <h3>Gameplay Systems</h3>
       <ul>
-        <li>Built modular weapon systems and implemented multiple weapon types, including heavy gunner</li>
-        <li>Developed seeking projectiles for both enemy and player use</li>
-        <li>Implemented core gameplay features including grapple mechanics and skill systems (sprint)</li>
+        <li>Built modular weapon systems and implemented multiple weapon types, including heavy gunner <a class="code-link" href="#code-bc-weapon-stats" data-code-target="code-bc-weapon-stats">Code</a></li>
+        <li>Developed seeking projectiles for both enemy and player use <a class="code-link" href="#code-bc-seeking-projectile" data-code-target="code-bc-seeking-projectile">Code</a></li>
+        <li>Implemented core gameplay features including grapple mechanics and skill systems (sprint) </li>
+        <li>Created a melee enemy attack system with a cooldown timer and a trigger collider <a class="code-link" href="#code-bc-melee-enemy" data-code-target="code-bc-melee-enemy">Code</a></li>
         <li>Designed interactive systems such as breakable objects, turrets, and inventory improvements</li>
       </ul>
     
@@ -505,13 +608,13 @@
       <ul>
         <li>Built UI for a consistent, polished visual style across the game</li>
         <li>Developed upgrade system UI, boss health displays, and failure state menus</li>
-        <li>Created modular menu/tab systems with improved navigation and usability</li>
+        <li>Created modular menu/tab systems with improved navigation and usability <a class="code-link" href="#code-bc-ui-tabs" data-code-target="code-bc-ui-tabs">Code</a></li>
         <li>Optimized UI scaling and resolved layout and asset inconsistencies</li>
       </ul>
     
       <h3>Level Design & World Building</h3>
       <ul>
-        <li>Designed and completed levels 1–4 from blockout to final polish</li>
+        <li>Designed and completed levels 1-4 from blockout to final polish</li>
         <li>Built prefab systems to streamline level creation and iteration</li>
         <li>Implemented gameplay objectives, tutorial triggers, and environmental storytelling</li>
         <li>Improved navigation and level flow through layout and NavMesh fixes</li>
@@ -519,8 +622,8 @@
     
       <h3>AI Systems</h3>
       <ul>
-        <li>Developed enemy AI with target-seeking behavior</li>
-        <li>Implemented pathing systems for controlled AI movement</li>
+        <li>Developed enemy AI with target-seeking behavior <a class="code-link" href="#code-bc-ai-seeking" data-code-target="code-bc-ai-seeking">Code</a></li>
+        <li>Implemented pathing systems for controlled AI movement <a class="code-link" href="#code-bc-ai-pathing" data-code-target="code-bc-ai-pathing">Code</a></li>
         <li>Integrated AI with combat and objective systems</li>
       </ul>
     
@@ -530,6 +633,237 @@
         <li>Fixed visual and functional issues including VFX, UI, and interactions</li>
         <li>Improved overall stability and polish through continuous testing and iteration</li>
       </ul>
+
+      <h3>Code Snapshots</h3>
+      <p style="margin-top:-0.25rem; color: var(--muted);">
+        Tip: click the <strong>Code</strong> chips above to jump straight to the snippet.
+      </p>
+      <div class="code-snapshots" aria-label="Code snapshots">
+        <details class="code-snap" id="code-bc-weapon-stats">
+          <summary>
+            <span>Weapon data (ScriptableObject)</span>
+            <span class="snap-meta">C# / Unity</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-bc-weapon-stats START -->
+public class weaponStats : itemSO
+{
+    public enum weaponType { primary, secondary, special }
+    public enum bulletType { RayCast, Projectile, Continuous}
+    public weaponType wepType;
+    public bulletType attackType;
+
+    public GameObject model;
+
+    [Header(&quot;Adjustment for muzzle flash placement&quot;)]
+    public float moveFlashX;
+    public float moveFlashY;
+    public float moveFlashZ;
+
+    [Header(&quot;Weapon Stats&quot;)]
+    public int shootDamage;
+    public int shootRange;
+    public float shootRate;
+    public int ammoCur, ammoMax, ammoReserve, ammoReserveMax;
+    public GameObject bulletObj;
+
+    [Header(&quot;Visuals and Sounds&quot;)]
+    public ParticleSystem hitEffect;
+    public AudioClip[] shootSounds;
+    [Range(0, 1)] public float shootVolume;
+    public AudioClip[] reloadSounds;
+    [Range(0, 1)] public float reloadVolume;
+
+    public void RefreshAmmo()
+    {
+        ammoCur = ammoMax;
+        ammoReserve = ammoReserveMax;
+    }
+
+    public override itemSO GetItem()
+    {
+        return this;
+    }
+
+    public override ArmorSO GetArmor()
+    {
+        return null;
+    }
+
+    public override weaponStats GetWeapon()
+    {
+        return this;
+    }
+
+}
+<!-- SNIP:code-bc-weapon-stats END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-bc-seeking-projectile">
+          <summary>
+            <span>Seeking projectile (player/enemy)</span>
+            <span class="snap-meta">C# / Unity</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-bc-seeking-projectile START -->
+    private void SeekEnemy()
+    {
+        if (target != null)
+        {
+            Vector3 enemyDir = hit.transform.position - transform.position;
+            Quaternion rot = Quaternion.LookRotation(new Vector3(enemyDir.x, 0, enemyDir.z));
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * turnSpeed);
+
+            rb.linearVelocity = transform.forward * speed;
+        }
+    }
+<!-- SNIP:code-bc-seeking-projectile END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-bc-melee-enemy">
+          <summary>
+            <span>Melee enemy attack (trigger + collider)</span>
+            <span class="snap-meta">C# / Unity AI</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-bc-melee-enemy START -->
+    void meleeAttack()
+    {
+        shootTimer = 0;
+        anim.SetTrigger(&quot;Melee Attack&quot;);
+        //shootTimer = 0; // Reset the shoot timer for the cooldown between melee attacks
+
+        turnOnCol();
+
+
+        if (type == enemyType.kamikaze)
+        {
+            kamikazeAttack();
+        }
+    }
+<!-- SNIP:code-bc-melee-enemy END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-bc-ui-tabs">
+          <summary>
+            <span>Menu tab group (modular UI)</span>
+            <span class="snap-meta">C# / Unity UI</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-bc-ui-tabs START -->
+    public void OnTabSelect(MenuTabButton button)
+    {
+        selectedButton = button;
+        ResetTabs();
+        button.background.sprite = buttonSelected;
+
+        int selectedIndex = button.transform.GetSiblingIndex();
+        for (int index = 0; index &lt; tabObjects.Count; index++)
+        {
+            if (index == selectedIndex)
+                tabObjects[index].SetActive(true);
+            else
+                tabObjects[index].SetActive(false);
+        }
+    }
+<!-- SNIP:code-bc-ui-tabs END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-bc-ai-seeking">
+          <summary>
+            <span>Enemy target-seeking (FOV + raycast)</span>
+            <span class="snap-meta">C# / Unity AI</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-bc-ai-seeking START -->
+    bool canSeePlayer()
+    {
+        playerDir = gameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+
+        Debug.DrawRay(headPos.position, playerDir,Color.cyan);
+
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir, out hit) &amp;&amp; angleToPlayer &lt;= FOV)
+        {
+            if (hit.collider.CompareTag(&quot;Player&quot;) &amp;&amp; angleToPlayer &lt;= FOV)
+            {
+                if (type != enemyType.stationary)
+                {
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                }
+
+                //Ranged attack
+                if (type != enemyType.melee &amp;&amp; shootTimer &gt;= shootRate &amp;&amp; angleToPlayer &lt;= shootAngle)
+                {
+                    shoot();
+                }
+                //Melee attack
+                float distanceToPlayer = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
+                if (type == enemyType.melee &amp;&amp; shootTimer &gt;= shootRate &amp;&amp; distanceToPlayer &lt;= meleeDistance)
+                //if (shootTimer &gt;= shootRate &amp;&amp; type == enemyType.melee &amp;&amp; agent.remainingDistance &lt;= meleeDistance) // Ensures attack happens when the shoot timer is ready
+                {
+                    meleeAttack();
+                }               
+                if (agent.remainingDistance &lt;= agent.stoppingDistance &amp;&amp; !isDead)
+                {
+                    faceTarget();                 
+                }
+
+                agent.stoppingDistance = stoppingDistOrig;
+
+                return true;
+            }
+        }
+        agent.stoppingDistance = 0;
+        return false;
+    }
+<!-- SNIP:code-bc-ai-seeking END --></code></pre>
+          </div>
+        </details>
+
+        <details class="code-snap" id="code-bc-ai-pathing">
+          <summary>
+            <span>AI pathing (set path + roam)</span>
+            <span class="snap-meta">C# / NavMesh</span>
+          </summary>
+          <div class="snap-body">
+            <pre><code><!-- SNIP:code-bc-ai-pathing START -->
+    void checkRoam()
+    {
+        if (type == enemyType.stationary)
+            return;
+
+        else if (roamTimer &gt; roamPauseTime &amp;&amp; agent.remainingDistance &lt; 0.01f)
+        {
+            if (movement == movementType.random)
+                randomRoam();
+            else if (movement == movementType.setPath)
+                setPathRoam();
+        }
+    }
+
+    void setPathRoam()
+    {
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
+
+        agent.SetDestination(pathPositions[currentPathPos].position);
+
+        if (currentPathPos &lt; pathPositions.Count - 1)
+            currentPathPos++;
+        else
+            currentPathPos = 0;
+    }
+<!-- SNIP:code-bc-ai-pathing END --></code></pre>
+          </div>
+        </details>
+
+      </div>
       
     </div>
 
@@ -557,7 +891,7 @@
   </section>
 
   <footer style="text-align:center; padding:2rem; background:#1e293b;">
-    <p>© 2026 Michael Gray</p>
+    <p>ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© 2026 Michael Gray</p>
   </footer>
 
   <script>
@@ -637,6 +971,54 @@
       updateCarousel();
       startAutoplay();
     }
+
+    // Code snapshot helpers
+    function openCodeSnapshotById(id) {
+      if (!id) return;
+      const snap = document.getElementById(id);
+      if (!snap || snap.tagName !== 'DETAILS') return;
+      snap.open = true;
+      snap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    document.querySelectorAll('a.code-link[data-code-target]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = a.getAttribute('data-code-target');
+        openCodeSnapshotById(id);
+        history.replaceState(null, '', `#${id}`);
+      });
+    });
+
+    if (location.hash && location.hash.startsWith('#code-')) {
+      const id = location.hash.slice(1);
+      setTimeout(() => openCodeSnapshotById(id), 0);
+    }
+
+    // Remove leading indentation from code snapshots (keeps relative indentation)
+    document.querySelectorAll('.code-snap pre code').forEach((codeEl) => {
+      const raw = codeEl.textContent ?? '';
+      const lines = raw.replace(/\r\n/g, '\n').split('\n');
+
+      while (lines.length && lines[0].trim() === '') lines.shift();
+      while (lines.length && lines[lines.length - 1].trim() === '') lines.pop();
+
+      let minIndent = Infinity;
+      for (const line of lines) {
+        if (line.trim() === '') continue;
+        const match = line.match(/^[ \t]+/);
+        const indent = match ? match[0].length : 0;
+        if (indent < minIndent) minIndent = indent;
+        if (minIndent === 0) break;
+      }
+
+      const dedented =
+        minIndent === Infinity
+          ? lines.join('\n')
+          : lines.map((l) => (l.trim() === '' ? '' : l.slice(minIndent))).join('\n');
+
+      codeEl.textContent = dedented;
+    });
   </script>
 
 </body>
