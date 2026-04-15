@@ -978,7 +978,10 @@ public class weaponStats : itemSO
       const snap = document.getElementById(id);
       if (!snap || snap.tagName !== 'DETAILS') return;
       snap.open = true;
-      snap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const header = document.querySelector('header');
+      const offset = (header ? header.getBoundingClientRect().height : 0) + 16;
+      const y = snap.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
     }
 
     document.querySelectorAll('a.code-link[data-code-target]').forEach((a) => {

@@ -415,6 +415,7 @@
     }
 
     body {
+      position: relative;
       background:
         radial-gradient(900px 600px at 15% 0%, rgba(45, 212, 191, 0.16), transparent 55%),
         radial-gradient(900px 650px at 92% 18%, rgba(132, 204, 22, 0.12), transparent 60%),
@@ -428,6 +429,7 @@
       content: "";
       position: fixed;
       inset: 0;
+      z-index: -1;
       pointer-events: none;
       background:
         repeating-linear-gradient(90deg, rgba(45, 212, 191, 0.06) 0 1px, transparent 1px 64px),
