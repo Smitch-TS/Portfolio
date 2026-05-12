@@ -442,6 +442,7 @@
     nav a:focus-visible,
     .button:focus-visible,
     .project-btn:focus-visible,
+    .card-logo-link:focus-visible,
     .toggle:focus-visible {
       outline: 2px solid rgba(45, 212, 191, 0.55);
       outline-offset: 2px;
@@ -515,6 +516,31 @@
     }
 
     .card p { color: var(--muted); }
+
+    .card-logo-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(167, 243, 208, 0.12);
+      background: rgba(0, 0, 0, 0.28);
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card-logo-link:hover {
+      border-color: rgba(45, 212, 191, 0.32);
+      box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.06);
+    }
+
+    .card-logo-link img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      display: block;
+      border-radius: 0;
+    }
 
     .button,
     .project-btn {
@@ -680,7 +706,9 @@
     <div class="projects">
 
       <div class="card">
-        <iframe frameborder="0" src="https://itch.io/embed/4345652" width="100%" height="200"><a href="https://null-forge-studio.itch.io/potionpanic">Potion Panic by Null Forge Studio, ShizNizz, AstonMartinez, Smitch_of_the_Nook, TheAngelofChaos</a></iframe>
+        <a class="card-logo-link" href="https://store.steampowered.com/app/4533650/PotionPanic/" target="_blank" rel="noopener noreferrer">
+          <img src="Images/potion-panic.png" alt="Potion Panic logo">
+        </a>
         <h3>Potion Panic</h3>
         <p>Arcade style multiplayer game inspired by games like Overcooked. This is my Capstone Project for my Game Development program.</p>
         <ul class="tag-row" aria-label="Core areas">
@@ -693,7 +721,9 @@
       </div>
 
       <div class="card">
-        <iframe height="200" frameborder="0" src="https://itch.io/embed/3910417" width="100%"><a href="https://smitch-of-the-nook.itch.io/voidcoil">Voidcoil by Smitch_of_the_Nook</a></iframe>
+        <a class="card-logo-link" href="https://smitch-of-the-nook.itch.io/voidcoil" target="_blank" rel="noopener noreferrer">
+          <img src="Images/voidcoil-mainmenu.png" alt="Voidcoil title screen">
+        </a>
         <h3>Voidcoil</h3>
         <p>Centipede-like arcade game built using C++, GateWare, Vulkan, and Dear ImGui. Goal of the project was to build a game without an engine.</p>
         <ul class="tag-row" aria-label="Core areas">
@@ -706,7 +736,9 @@
       </div>
 
       <div class="card">
-        <iframe height="200" frameborder="0" src="https://itch.io/embed/4456322" width="100%"><a href="https://smitch-of-the-nook.itch.io/operation-starfull">Operation Starfull by Smitch_of_the_Nook</a></iframe>
+        <a class="card-logo-link" href="https://smitch-of-the-nook.itch.io/operation-starfull" target="_blank" rel="noopener noreferrer">
+          <img src="Images/operation-starfall.png" alt="Operation Starfall logo">
+        </a>
         <h3>Operation Starfall</h3>
         <p>Fast-paced Unity shooter with modular systems. The goal of this project was to build a game in one month in a team setting.</p>
         <ul class="tag-row" aria-label="Core areas">
